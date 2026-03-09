@@ -96,4 +96,4 @@ Depois que a luminária básica estiver funcionando, é possível experimentar:
 Este projeto foi criado como parte de um encontro prático da comunidade Connect Byte.
 
 Website: https://connect-byte.org  
-Instagram: https://instagram.com/connectbyte_
+Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)
