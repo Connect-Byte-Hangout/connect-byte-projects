@@ -100,4 +100,4 @@ Once the basic lamp works, participants can experiment with:
 This project was created as part of a Connect Byte hands-on workshop.
 
 Website: https://connect-byte.org  
-Instagram: https://www.instagram.com/connectbyte_
+Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)
