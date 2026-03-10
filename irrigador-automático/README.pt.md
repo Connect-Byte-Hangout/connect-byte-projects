@@ -1,10 +1,10 @@
-﻿🇺🇸 [English](README.md) | 🇧🇷 Português
+🇺🇸 [English](README.md) | 🇧🇷 Português
 
 # Irrigador Automático com Arduino
 
-Um projeto prático de automação onde as participantes constroem um sistema que monitora a umidade do solo e irriga plantas automaticamente.
+Um projeto prático de automação residencial onde as participantes constroem um sistema que monitora a umidade do solo e irriga plantas automaticamente.
 
-Este projeto foi desenvolvido durante um encontro prático da **Connect Byte** e introduz conceitos de sensores analógicos e controle de atuadores (bombas d'água).
+Este projeto foi desenvolvido durante um encontro prático da **Connect Byte** e introduz conceitos de sensores analógicos e controle de atuadores (bombas d'água) via relé.
 
 ---
 
@@ -36,11 +36,11 @@ Ao concluir este projeto, as participantes aprendem:
 
 Conecte os componentes conforme mostrado no diagrama (disponível na pasta assets).
 
-![Circuito](./assets/componentes.png)
+![Circuito](./assets/First_Girls.png)
 
 **Ligação básica:**
 - Sensor de Umidade → Pino A0 (Analógico)
-- Módulo → Pino 7 (Digital)
+- Módulo Relé → Pino 7 (Digital)
 - Bomba d'água → Conectada à saída do Relé e fonte externa
 
 ---
@@ -69,4 +69,12 @@ Arquivo principal:
 
 O Arduino lê constantemente o valor analógico do sensor de umidade. Quando o solo seca, a resistência aumenta e o valor lido ultrapassa o limite definido (setpoint).
 
-Ao detectar o solo seco, o Arduino envia um sinal para o Rel
+Ao detectar o solo seco, o Arduino envia um sinal, que "fecha o interruptor" e liga a bomba d'água até que o solo esteja úmido novamente.
+
+
+## Connect Byte
+
+Este projeto foi criado como parte de um encontro prático da comunidade Connect Byte.
+
+Website: https://connect-byte.org  
+Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)

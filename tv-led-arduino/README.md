@@ -1,4 +1,4 @@
-﻿🇺🇸 English | 🇧🇷 [Português](README.pt.md)
+🇺🇸 English | 🇧🇷 [Português](README.pt.md)
 
 <p align="center">
   <img src="./assets/tv3.jpeg" width="100%">

@@ -1,5 +1,9 @@
 🇺🇸 English | 🇧🇷 [Português](#português)
 
+<p align="center">
+  <img src="./banner.png" width="100%">
+</p>
+
 # Connect Byte Projects
 
 Hands-on projects developed in Connect Byte workshops.
@@ -33,14 +37,36 @@ Anyone is welcome to explore the projects, build them and adapt them to create n
 
 ---
 
-## Repository Structure
+## About the community
 
-```
-projects/
-├ lamp-led-arduino
-├ mini-car [WIP]
-├ electronic-catapult [WIP]
-```
+The projects in this repository were originally created during **Connect Byte monthly workshops**.
+
+These in-person workshops are designed for **women who want to explore technology through hands-on experiences**, whether they are beginners, simply curious about technology, not from a technical background, or already working in the field.
+
+During the workshops participants collaborate to build practical projects combining hardware, software and creative technologies.
+
+Spots are limited to keep the experience collaborative and hands-on, and they tend to fill up quickly.
+
+---
+
+## How to participate
+
+If you would like to participate in one of the workshops, you can apply through our website.
+
+Upcoming events and registrations are available at:
+
+https://connect-byte.org
+
+---
+
+## Follow the community
+
+You can follow Connect Byte and stay updated about upcoming workshops and projects through our social media:
+
+- Website: https://connect-byte.org  
+- Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)
+- LinkedIn: [Connect Byte](https://www.linkedin.com/company/connect-byte/)
+
 ---
 
 # Português
@@ -80,10 +106,32 @@ Qualquer pessoa pode explorar os projetos, reproduzi-los e adaptá-los para cria
 
 ---
 
-## Estrutura do repositório
-```
-projects/
-├ lamp-led-arduino
-├ mini-car [WIP]
-├ electronic-catapult [WIP]
-```
+## Sobre a comunidade
+
+Os projetos deste repositório foram originalmente criados durante os **encontros mensais da Connect Byte**.
+
+Esses encontros presenciais são pensados para **mulheres que querem explorar tecnologia através de experiências práticas**, sejam iniciantes, apenas curiosas sobre tecnologia, não sejam da área ou já tenham experiência no campo. Não é necessário ter experiência prévia em tecnologia.
+
+Durante os encontros as participantes colaboram para construir projetos que combinam hardware, software e tecnologias criativas.
+
+As vagas são limitadas para manter a experiência colaborativa e prática, e costumam se esgotar rapidamente.
+
+---
+
+## Como participar
+
+Se você gostaria de participar de um dos encontros, é possível se inscrever através do nosso site.
+
+Os próximos eventos e inscrições estão disponíveis em:
+
+https://connect-byte.org
+
+---
+
+## Acompanhe a comunidade
+
+Você também pode acompanhar a Connect Byte e ficar por dentro dos próximos encontros e projetos através das redes sociais:
+
+- Website: https://connect-byte.org  
+- Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)
+- LinkedIn: [Connect Byte](https://www.linkedin.com/company/connect-byte/)
