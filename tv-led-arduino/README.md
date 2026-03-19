@@ -1,147 +1,56 @@
-﻿# Projeto de Março – Televisão com Arduino
+🇺🇸 English | 🇧🇷 [Português](README.pt.md)
 
-Projeto mensal da Connect Byte.  
-Neste mês será construída uma “televisão” utilizando LED simples ou LED RGB, botão e Arduino Uno, explorando conceitos fundamentais de eletrônica e programação embarcada.
+<p align="center">
+  <img src="./assets/tv3.jpeg" width="100%">
+</p>
 
----
+# Arduino RGB TV
 
-## Objetivos do Projeto
+A creative electronics project where participants build a mini cardboard television with interactive RGB lighting controlled by an Arduino and a push-button.
 
-O participante aprenderá:
-
-- Conceitos básicos de eletrônica.
-- Funcionamento e utilização de LEDs simples e LEDs RGB.
-- Uso de resistores para limitação de corrente.
-- Funcionamento de botões no Arduino.
-- Alimentação da placa com bateria.
-- Noções básicas de programação no Arduino IDE.
-- Processo de upload de código para a placa.
+This project was developed during a Connect Byte monthly workshop and introduces fundamental concepts of electronics, color mixing, and embedded programming.
 
 ---
 
-## Componentes Utilizados
+## Overview
 
-- Arduino Uno (necessário para LED RGB).
-- LED simples.
-- LED RGB.
-- Resistores (220 Ω ou 330 Ω recomendados).
-- Botão.
-- Suporte de pilhas.
-- Fios de conexão.
-- Ferro de solda e estanho (quando aplicável).
+In this project, participants build a custom "TV" casing and wire an interactive circuit. 
 
----
+Using an Arduino, an RGB LED, and a push-button, the system mimics changing TV channels. Each time the button is pressed, the Arduino updates a state machine to change the color of the screen (Red, Green, Blue, Party Mode, or Off).
 
-## Etapas do Projeto
-
-1. Soldagem do LED RGB (opcional caso seja utilizado).
-2. Teste do LED simples diretamente na bateria.
-3. Conexão do botão ao Arduino.
-4. Conexão da bateria ao Arduino.
-5. Upload do software (arquivo final do projeto).
+This project introduces key concepts such as:
+- basic electronics (Voltage, Current, and GND)
+- the importance of resistors for current limiting
+- how RGB LEDs work and how to mix colors using PWM
+- reading digital inputs (buttons) and debouncing
+- state machines and `switch/case` logic
 
 ---
 
-## O que Você Vai Aprender
+## Circuit
 
-- Diferença entre 5V e GND.
-- Como ocorre a circulação de corrente elétrica.
-- Por que resistores são essenciais.
-- Como o Arduino controla componentes.
-- Como carregar código na placa Arduino.
+- **RGB LED** → Connect each color leg (R, G, B) to a 220Ω resistor, then to Arduino PWM pins (e.g., 9, 10, 11). Connect the common leg to GND or 5V (depending on the LED type).
+- **Push-button** → One side to GND, the other to Arduino digital pin 2 (using internal `INPUT_PULLUP`).
+- **Power** → The system can be powered by a battery holder connected to the Arduino's VIN and GND pins.
 
 ---
 
-## Atenções Importantes
+## Code
 
-### Nunca conectar LED diretamente ao 5V do Arduino
+The example code is available in the `code` folder.
 
-LEDs são componentes sensíveis e não possuem limitação própria de corrente.  
-Conectar um LED diretamente assim:
+The project can be opened using **PlatformIO in Visual Studio Code**.
 
-5V → LED → GND
+Main file:
+`code/led-tv/src/main.cpp`
 
-pode causar:
+For a deeper dive into reading button states, `millis()` debouncing, and programming the TV channels, watch our [workshop recording](https://www.youtube.com/watch?v=jdX4qP33tmc) where we explain the code step-by-step.
 
-- Queima do LED.
-- Danos ao pino do Arduino.
-- Danos permanentes à placa.
-
-### Finalidade do resistor
-
-O resistor funciona como limitador de corrente, mantendo o circuito seguro.
-
-Ligação correta:
-
-5V → Resistor → LED → GND  
-ou  
-Pino digital → Resistor → LED → GND
-
-Valores recomendados:
-
-- 220 Ω
-- 330 Ω
+See more in our [workshop](https://www.canva.com/design/DAHD3Qv_aYI/iuNidV_qm2hbHpIOjla_cA/edit?utm_content=DAHD3Qv_aYI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton).
 
 ---
 
-## Verificação de Polaridade
-
-### LED Simples
-
-- Perna maior: ânodo (positivo).  
-- Perna menor: cátodo (negativo).  
-- Base achatada: lado negativo.
-
-Ligação:
-
-Pino digital ou 5V → Resistor → Ânodo  
-Cátodo → GND
-
-### LED RGB
-
-Possui quatro pernas.  
-Uma delas é a perna comum:
-
-- Cátodo comum → conectar ao GND.  
-- Ânodo comum → conectar ao 5V.  
-
-Verificar:
-
-- Datasheet do modelo.
-- Tamanho da perna.
-- Teste com multímetro (modo diodo).
-
-Cada cor deve possuir seu próprio resistor.
-
-### Suporte de Bateria
-![Descrição da imagem](/img/supor
-
-- Fio vermelho: positivo.
-- Fio preto: negativo.
-
-No Arduino:
-
-- VIN ou 5V → positivo.
-- GND → negativo.
-
-Inversão pode danificar a placa.
-
----
-
-## Como Começar
-
-1. Ler a Wiki completa do projeto.
-2. Separar todos os materiais.
-3. Realizar a montagem com calma.
-4. Testar cada etapa individualmente.
-
----
-
-## Suporte
-
-Em caso de dúvidas, consulte a Wiki detalhada ou solicite auxílio no grupo Connect Byte.
-
----
-
-Feito com 💙 para quem está começando no mundo da tecnologia.
-Connect Byte • Março 2026
+## Connect Byte
+Website: https://connect-byte.org  
+Linkedin: https://www.linkedin.com/company/connect-byte/  
+Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)

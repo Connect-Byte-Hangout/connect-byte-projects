@@ -1,29 +1,29 @@
 ﻿🇺🇸 English | 🇧🇷 [Português](README.pt.md)
 
 <p align="center">
-  <img src="./assets/lamp3.JPG" width="100%">
+  <img src="./assets/carnaval1.jpg" width="100%">
 </p>
 
-# Arduino LED Lamp
+# Arduino Float Car Robot
 
-A simple creative electronics project where participants build a small LED lamp using Arduino.
+A creative robotics project where participants build an autonomous float car robot using Arduino.
 
-This project was developed during a Connect Byte hands-on workshop and introduces the basics of electronic circuits and microcontroller programming.
+This project was developed during a Connect Byte hands-on workshop and introduces the basics of robotics, motor control, and programming logic.
 
 ---
 
 ## Overview
 
-In this project participants build a small LED-based lamp using an Arduino and simple electronic components.
+In this project participants build a small robotic float car (Robô Polvo) that executes a programmed choreography.
 
-The LED can be controlled through code, allowing experimentation with different lighting behaviors.
+Using a motor driver, the Arduino controls two DC motors to move forward, stop, and turn exactly 90 degrees. At the same time, an LED blinks in a "samba rhythm".
 
 This project introduces key concepts such as:
 
-- basic electronic circuits
-- digital outputs
-- resistors and LEDs
-- Arduino programming
+- basic robotics and kinematics
+- DC motor control via H-bridge drivers (L9110S)
+- movement sequences using state machines
+- time-based multitasking (using `millis()`)
 
 ---
 
@@ -31,23 +31,22 @@ This project introduces key concepts such as:
 
 By completing this project participants will learn:
 
-- how to assemble a simple circuit on a breadboard
-- how LEDs work
-- why resistors are necessary
-- how to control components with Arduino code
+- how to wire a motor driver to an Arduino and DC motors
+- how to control motor direction and speed through code
+- how to calculate turning times based on wheel radius and distance
+- how to run parallel tasks, like blinking an LED without interrupting the robot's movement
 
 ---
 
-
 ## Circuit
 
-Connect the components as shown in the diagram.
-
-![Circuit](circuit-diagram.png)
+Connect the components taking care with the motor driver connections.
 
 Basic wiring:
 
-LED → resistor → Arduino pin 13
+- Motor Right → L9110S Driver → Arduino pins 7 (A) and 8 (B)
+- Motor Left → L9110S Driver → Arduino pins 4 (A) and 5 (B)
+- "Octopus Eye" LED → resistor → Arduino pin 11
 
 ## Development Environment
 
@@ -71,27 +70,28 @@ The project can be opened using **PlatformIO in Visual Studio Code**.
 
 Main file:
 
-```code/lamp/src/main.cpp```
+```code/car/src/main.cpp```
 
----
+
+For a deeper dive into the logic and state machines, watch our [workshop recording](https://drive.google.com/file/d/1SJ_JABWWWgHsd38rvRdCPOPwIJ-EQPhp/view) where we explain the code step-by-step.
 
 ## How it works
 
-The Arduino sends a HIGH signal to the LED pin, allowing current to flow through the LED and resistor.
+The Arduino sends PWM (Pulse Width Modulation) and digital signals to the L9110S driver, which translates them into power to spin the motors forward or backward.
 
-The resistor protects the LED by limiting the current.
+The movement is controlled by a state machine that dictates the car's choreography step-by-step. Simultaneously, the `millis()` function checks the time to blink the LED in a 2/4 samba rhythm without pausing the motors.
 
----
+See more in our [workshop](https://www.canva.com/design/DAG_Xh8P50w/FBFa6IrBuQ4W8jjsY-pvWw/edit).
+
 
 ## Possible Extensions
 
-Once the basic lamp works, participants can experiment with:
+Once the basic float car works, participants can experiment with:
 
-- RGB LEDs
-- brightness control with PWM
-- sensors to control the light
-- decorative lamp designs
-- connecting the lamp to IoT systems
+- ultrasonic sensors to avoid obstacles
+- line tracking modules
+- bluetooth modules to control the car via smartphone
+- new choreographies and LED rhythms
 
 ---
 
@@ -99,5 +99,6 @@ Once the basic lamp works, participants can experiment with:
 
 This project was created as part of a Connect Byte hands-on workshop.
 
-Website: https://connect-byte.org  
+Website: https://connect-byte.org    
+Linkedin: https://www.linkedin.com/company/connect-byte/  
 Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)

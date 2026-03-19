@@ -1,65 +1,35 @@
 ﻿🇺🇸 English | 🇧🇷 [Português](README.pt.md)
 
 <p align="center">
-  <img src="./assets/lamp3.JPG" width="100%">
+  <img src="./assets/planner2.jpg" width="100%">
 </p>
 
-# Arduino LED Lamp
+# Interactive LED Planner
 
-A simple creative electronics project where participants build a small LED lamp using Arduino.
+A hands-on electronics project where participants build an interactive habit tracker or daily planner using rocker switches and LEDs inside a picture frame.
 
-This project was developed during a Connect Byte hands-on workshop and introduces the basics of electronic circuits and microcontroller programming.
+This project was developed during a Connect Byte workshop and introduces physical interaction and basic circuit logic.
 
 ---
 
 ## Overview
 
-In this project participants build a small LED-based lamp using an Arduino and simple electronic components.
+In this project, participants use a picture frame to create a visual "quest board" or habit tracker. Each task is linked to a physical rocker switch and an LED. 
 
-The LED can be controlled through code, allowing experimentation with different lighting behaviors.
+When a task is completed, flipping the switch turns on the LED, giving a satisfying visual and physical feedback of accomplishment.
 
 This project introduces key concepts such as:
-
-- basic electronic circuits
-- digital outputs
-- resistors and LEDs
-- Arduino programming
-
----
-
-## Learning Goals
-
-By completing this project participants will learn:
-
-- how to assemble a simple circuit on a breadboard
-- how LEDs work
-- why resistors are necessary
-- how to control components with Arduino code
+- reading digital inputs (switches)
+- controlling digital outputs (LEDs)
+- managing multiple inputs and outputs simultaneously
+- integrating electronics into everyday decorative objects
 
 ---
-
 
 ## Circuit
 
-Connect the components as shown in the diagram.
-
-![Circuit](circuit-diagram.png)
-
-Basic wiring:
-
-LED → resistor → Arduino pin 13
-
-## Development Environment
-
-This project was developed using **Visual Studio Code** with the **PlatformIO extension**.
-
-PlatformIO provides a professional development environment for embedded systems, including project management, dependency management and device upload tools.
-
-Tools used:
-
-- Visual Studio Code
-- PlatformIO Extension
-- Arduino Framework
+- **Rocker Switches** → One side to 5V, the other to a digital input pin (with a pull-down resistor) or using `INPUT_PULLUP` to GND.
+- **LEDs** → Digital output pin → 220Ω Resistor → LED Anode (+) → LED Cathode (-) → GND.
 
 ---
 
@@ -70,34 +40,11 @@ The example code is available in the `code` folder.
 The project can be opened using **PlatformIO in Visual Studio Code**.
 
 Main file:
-
-```code/lamp/src/main.cpp```
-
----
-
-## How it works
-
-The Arduino sends a HIGH signal to the LED pin, allowing current to flow through the LED and resistor.
-
-The resistor protects the LED by limiting the current.
-
----
-
-## Possible Extensions
-
-Once the basic lamp works, participants can experiment with:
-
-- RGB LEDs
-- brightness control with PWM
-- sensors to control the light
-- decorative lamp designs
-- connecting the lamp to IoT systems
+`code/planner/src/main.cpp`
 
 ---
 
 ## Connect Byte
-
-This project was created as part of a Connect Byte hands-on workshop.
-
 Website: https://connect-byte.org  
+Linkedin: https://www.linkedin.com/company/connect-byte/  
 Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)
