@@ -5,7 +5,7 @@
 - **Resistor** não tem lado, pode ser soldado em qualquer ponta.  
 - **LED** tem lado: perna maior é **Positivo (+)**, perna menor é **Negativo (-)**.  
 - **Crimpagem**: usar alicate para prender o terminal metálico no fio e depois colocar a capinha plástica. 
-- **Montagem**: confira o diagrama do projeto [aqui](docs/diagram.png).  
+- **Montagem**: confira o diagrama do projeto [aqui](docs/diagram.jpg).  
 
 ---
 
@@ -67,7 +67,7 @@ Agora temos dois fios escuros soltos (LED e bateria).
 - **Resistors** have no polarity — they can be soldered in either direction.
 - **LEDs** do have polarity: the longer leg is Positive (+), the shorter leg is Negative (−).
 - **Crimping:** use pliers to clamp the metal terminal onto the wire, then slide the plastic sleeve over it.
-- **Assembly:** check the project diagram [here](docs/diagram.png).
+- **Assembly:** check the project diagram [here](docs/diagram.jpg).
 ---
 
 ## Step 1: Preparing the LED ✨
