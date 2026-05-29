@@ -40,7 +40,7 @@ O circuito foi pensado para ser compacto, seguro e de baixa tensão, dispensando
 
 •	**Simulação do Circuito:** Simule o circuito na web no [Wokwi](https://wokwi.com/projects/463645117690066945).
 
-•	**Workshop:** Em breve em nossa aula online.
+•	**Workshop:** Assista à nossa [gravação do workshop](https://www.youtube.com/watch?v=hPPSX-9uRHw) aqui. Você também pode conferir o código da reunião [aqui](https://wokwi.com/projects/465207679102754817).
 
 ---
 

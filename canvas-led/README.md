@@ -39,7 +39,7 @@ The circuit was designed to be compact, safe, and low-voltage, requiring no wall
 
 •   **Circuit Simulation:** Simulate the circuit on the web at [Wokwi](https://wokwi.com/projects/463645117690066945).
 
-•   **Workshop:** Coming soon in our online class.
+•   **Workshop:** Watch our [workshop recording](https://www.youtube.com/watch?v=hPPSX-9uRHw) here. You can also check the code of the meeting [here](https://wokwi.com/projects/465207679102754817).
 
 ---
 

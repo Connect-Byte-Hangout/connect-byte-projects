@@ -1,108 +1,57 @@
+🇺🇸 English | 🇧🇷 [Português](README.pt.md)
 
-🐰 Easter Physical Tamagotchi — Connect Byte
+<p align="center">
+  <img src="./assets/Pascoa1.JPG" width="100%">
+</p>
+
+# 🐰 Easter Physical Tamagotchi
 
 A creative electronics project where participants build an interactive Easter-themed object that blends crafting, storytelling, and hardware in a playful and hands-on way ✨
 
 This project was developed for a Connect Byte workshop and introduces fundamental concepts of electronics through a creative and accessible experience.
 
-________________________________________
-
-Overview
+## 🎨 Project Overview
 
 In this project, participants will design and assemble a small interactive artifact using simple materials and electronic components.
 
-The experience is divided into two moments:
+The experience is divided into two moments: a creative phase focused on personalization and visual design, and an electronics phase where interaction is added through light and/or sound. Depending on the chosen level, the project reacts either to touch (button) or environmental input (sound), creating a simple but engaging interactive behavior.
 
-• a creative phase, focused on personalization and visual design 🎨
-• an electronics phase, where interaction is added through light and/or sound ⚡
+## ✨ How the "Magic" Works
 
-Depending on the chosen level, the project reacts either to touch (button) or environmental input (sound), creating a simple but engaging interactive behavior.
+This project is designed to be beginner-friendly, creative-first, and modular. Participants can choose their level of complexity:
 
-This project introduces key concepts such as:
+**🌱 Level 1 — Basic:** A simple circuit powered by a coin battery. When the button is pressed, the current flows and the light turns on. When released, the light turns off.
 
-• basic electronics (Voltage, Current, and GND)
-• how LEDs work and why resistors are important
-• simple circuits using batteries and switches
-• reading environmental input with sensors
-• using Arduino for interactive behaviors
-• combining art + hardware into a cohesive experience
+**⚡ Level 2 — Intermediate:** An Arduino-based interactive circuit. A sound sensor (KY-038) detects a strong sound input in the environment. The Arduino processes this signal and triggers an output, activating both a light (LED) and a sound (Buzzer).
 
-________________________________________
+## 🧩 How We'll Integrate Art and Electronics
 
-Circuit
+To ensure a seamless integration between the handcrafted object and the hardware, this project introduces key concepts such as:
 
-🌱 Level 1 — Basic
+1. *Basic Electronics:* Understanding Voltage, Current, GND, how LEDs work, and why resistors are important.
+2. *Simple Circuits:* Building standalone interactions using CR2032 batteries and push-buttons for Level 1.
+3. *Microcontroller Logic:* Reading environmental input with sensors and using an Arduino (Nano or Uno) for interactive behaviors in Level 2.
 
-A simple circuit powered by a coin battery:
+## 🛠️ Technical Summary for Assembly (Hardware)
 
-• LED → connected in series with a resistor
-• Push-button → controls the flow of current
-• Battery (CR2032) → provides power
+No prior experience with electronics is required. You can choose to build the Basic or the Intermediate version. 
 
-Basic wiring flow:
+•   **Level 1 Circuit:** Battery (CR2032) (+) → Push-button → Resistor → LED (+) → LED (–) → Battery (–).
+Check the [assembly guide](assets/projeto_basico_pascoa.pdf).
 
-Battery (+) → Button → Resistor → LED (+)
-Battery (–) → LED (–)
+•   **Level 2 Circuit:** Built with Arduino (Nano or Uno), a sound sensor, a buzzer, and an LED with a resistor powered via USB. Check the [assembly guide](assets/projeto_intermediario_pascoa.pdf).
 
-Behavior:
+•   **Code (Level 2):** Example code is available in the `code` folder. Open the project using PlatformIO in Visual Studio Code or the Arduino IDE. [Main file](code/projeto_intermediario.ino).
 
-• press → light turns on
-• release → light turns off
+•   **Workshop:** Check our class on [youtube](https://youtu.be/r3VPI3xCQUY?si=Go0TAlsu_vlTtzGe).
 
-________________________________________
+---
 
-⚡ Level 2 — Intermediate
+<p align="center">
+  <img src="./assets/Pascoa3.jpg" width="100%">
+</p>
 
-An Arduino-based interactive circuit:
-
-• LED → connected to a digital output pin (with resistor)
-• Buzzer → connected to a digital pin for sound output
-• Sound sensor (KY-038) → connected to an analog/digital input
-• Arduino (Nano or Uno) → controls logic
-• Power → via USB
-
-Behavior:
-
-• the sensor detects a strong sound input
-• Arduino processes the signal
-• output is triggered (light + sound)
-
-________________________________________
-
-Code
-
-Example code is available in the code folder.
-
-The project can be opened using PlatformIO in Visual Studio Code or the Arduino IDE.
-
-Main file:
-
-code/src/main.cpp
-
-The code demonstrates:
-
-• reading input from a sound sensor
-• controlling LEDs and buzzers
-• simple conditional logic for interaction
-
-________________________________________
-
-Workshop Experience
-
-This project is designed to be:
-
-• beginner-friendly
-• creative-first, technical-second
-• modular (participants can choose their level)
-
-No prior experience with electronics is required.
-
-________________________________________
-
-Connect Byte
-
-Website: https://connect-byte.org
-
-LinkedIn: https://www.linkedin.com/company/connect-byte/
-
-Instagram: @connectbyte_
+## Connect Byte
+Website: https://connect-byte.org  
+Linkedin: https://www.linkedin.com/company/connect-byte/  
+Instagram: [@connectbyte_](https://www.instagram.com/connectbyte_)
