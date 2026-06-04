@@ -6,41 +6,43 @@
 
 # Interactive LED Planner
 
-A hands-on electronics project where participants build an interactive habit tracker or daily planner using rocker switches and LEDs inside a picture frame.
+A hands-on electronics project where participants build an interactive habit tracker or daily planner inside a picture frame. 
 
-This project was developed during a Connect Byte workshop and introduces physical interaction and basic circuit logic.
-
----
-
-## Overview
-
-In this project, participants use a picture frame to create a visual "quest board" or habit tracker. Each task is linked to a physical rocker switch and an LED. 
-
-When a task is completed, flipping the switch turns on the LED, giving a satisfying visual and physical feedback of accomplishment.
-
-This project introduces key concepts such as:
-- reading digital inputs (switches)
-- controlling digital outputs (LEDs)
-- managing multiple inputs and outputs simultaneously
-- integrating electronics into everyday decorative objects
+This project was developed during a Connect Byte workshop and introduces physical interaction and basic circuit logic in a creative way.
 
 ---
 
-## Circuit
+## 🎨 Project Overview
 
-- **Rocker Switches** → One side to 5V, the other to a digital input pin (with a pull-down resistor) or using `INPUT_PULLUP` to GND.
-- **LEDs** → Digital output pin → 220Ω Resistor → LED Anode (+) → LED Cathode (-) → GND.
+In this project, participants use a picture frame to create a visual "quest board" or habit tracker. Each task is linked to a physical switch and an output (like an LED or a vibration motor). 
+
+When a task is completed, flipping the switch activates the circuit, giving a satisfying visual and physical feedback of accomplishment.
+
+This project is designed to be modular, allowing participants to choose their level of complexity:
+
+**🌱 Level 1 — Basic:** A simple circuit using rocker switches and LEDs. Completing a task turns on its corresponding light.
+
+**⚡ Level 2 — Intermediate:** An upgraded circuit featuring multiple switches, LEDs, and a vibration motor. One of the "main tasks" triggers both a light and a satisfying haptic vibration when completed.
 
 ---
 
-## Code
+## 🧩 How We'll Integrate Art and Electronics
 
-The example code is available in the `code` folder.
+To ensure a seamless integration between the handcrafted planner and the hardware, this project introduces key concepts such as:
 
-The project can be opened using **PlatformIO in Visual Studio Code**.
+1. *Basic Electronics:* Understanding Voltage, Current, GND, and circuit loops.
+2. *Component Controls:* Learning how switches act as gates for current and how resistors protect components.
+3. *Parallel Circuits:* Wiring multiple independent paths so that different switches control separate tasks, or a single switch triggers two components at once (LED + Motor).
 
-Main file:
-`code/planner/src/main.cpp`
+---
+
+## 🛠️ Technical Summary for Assembly (Hardware)
+
+The circuits are standalone hardware projects powered by batteries, requiring no microcontrollers or programming.
+
+•   **Step-by-step:** Check the assembly instructions in the [assembly](docs/ASSEMBLY.md) tab. To view the circuit, check the diagrams in the [Basic Project](/docs/diagramBasic.png) and [Intermediate Project](docs/diagramMedium.png) sections.
+
+•   **Workshop:** Coming soon in our online class "Debug sem Pressão".
 
 ---
 
