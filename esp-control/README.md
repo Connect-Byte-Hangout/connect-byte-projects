@@ -1,7 +1,7 @@
 🇺🇸 English | 🇧🇷 [Português](README.pt.md)
 
 <p align="center">
-  <img src="./assets/girlsJun.JPG" width="100%">
+  <img src="./assets/girlsJun.jpg" width="100%">
 </p>
 
 # Byte do Milhão 💜🎮
@@ -19,7 +19,7 @@ Using ESP32 as physical controllers, Node.js backend with WebSocket, and a gamif
 **Byte do Milhão** is an interactive live game show for Connect Byte community events. Participants use physical ESP32 controllers to answer questions in real time, with a live-updated leaderboard and instant on-screen feedback.
 
 <p align="center">
-  <img src="./assets/projectJun.JPG" width="100%">
+  <img src="./assets/projectJun.jpg" width="100%">
 </p>
 
 ---

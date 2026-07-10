@@ -1,7 +1,7 @@
 🇺🇸 [English](README.md) | 🇧🇷 Português
 
 <p align="center">
-  <img src="./assets/girlsJun.JPG" width="100%">
+  <img src="./assets/girlsJun.jpg" width="100%">
 </p>
 
 # Byte do Milhão 💜🎮
@@ -19,7 +19,7 @@ Usando ESP32 como controles remotos, backend Node.js com WebSocket e frontend Ne
 O **Byte do Milhão** é um game show interativo para eventos ao vivo da comunidade Connect Byte. As participantes usam controles físicos com ESP32 para responder perguntas em tempo real, com placar atualizado ao vivo e feedback imediato na tela.
 
 <p align="center">
-  <img src="./assets/projectJun.JPG" width="100%">
+  <img src="./assets/projectJun.jpg" width="100%">
 </p>
 
 ---
