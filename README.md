@@ -4,6 +4,10 @@
   <img src="./banner.png" width="100%">
 </p>
 
+<p align="center">
+  <a href="https://connect-byte-hangout.github.io/connect-byte-projects/"><strong>🌐 Explorar os projetos no site</strong></a>
+</p>
+
 # Connect Byte Projects
 
 Hands-on projects developed in Connect Byte workshops.
@@ -23,7 +27,7 @@ The goal is to encourage learning through building real systems that combine phy
 
 ## How this repository works
 
-Projects are organized into individual folders, each containing everything needed to reproduce the project:
+Projects are organized under [`projects/`](projects/), with each folder containing everything needed to reproduce the project:
 
 - project documentation
 - [WIP] circuit diagrams
@@ -34,6 +38,26 @@ Projects are organized into individual folders, each containing everything neede
 These projects were originally created as part of Connect Byte workshops, where participants build and experiment with technology in a collaborative environment.
 
 Anyone is welcome to explore the projects, build them and adapt them to create new ideas.
+
+Projects with firmware use PlatformIO. See the [Portuguese installation and usage guide](docs/platformio.md).
+
+## Project catalog / Catálogo de projetos
+
+<!-- PROJECTS:START -->
+| Projeto | Firmware |
+| --- | :---: |
+| [Telas Iluminadas de Dia das Mães](projects/canvas-led/README.md) | Não |
+| [Missão Catapulta](projects/catapult-halloween-arduino/README.md) | Não |
+| [Byte do Milhão](projects/esp-control/README.md) | Sim |
+| [Carro Alegórico Robótico com Arduino](projects/float-car-arduino/README.md) | Sim |
+| [Irrigador Automático com Arduino](projects/irrigador-automatico/README.md) | Sim |
+| [Luminária LED com Arduino](projects/lamp-led-arduino/README.md) | Sim |
+| [Melodia Mecânica](projects/mechanical-melody/README.md) | Não |
+| [Planner Financeiro Físico](projects/physical-financial-planner/README.md) | Sim |
+| [Planner Interativo com LEDs](projects/planner-led/README.md) | Não |
+| [Tamagotchi Físico de Páscoa](projects/tamagotchi-pascoa/README.md) | Sim |
+| [Televisão RGB com Arduino](projects/tv-led-arduino/README.md) | Sim |
+<!-- PROJECTS:END -->
 
 ---
 
@@ -92,7 +116,7 @@ O objetivo é incentivar o aprendizado através da construção de sistemas reai
 
 ## Como este repositório funciona
 
-Os projetos estão organizados em pastas individuais, cada uma contendo tudo o que é necessário para reproduzir o projeto:
+Os projetos estão organizados dentro de [`projects/`](projects/), cada um em uma pasta contendo tudo o que é necessário para reproduzi-lo:
 
 - documentação do projeto
 - [WIP] diagramas de circuito
@@ -103,6 +127,8 @@ Os projetos estão organizados em pastas individuais, cada uma contendo tudo o q
 Esses projetos foram originalmente criados como parte dos workshops da Connect Byte, onde as participantes constroem e experimentam tecnologia em um ambiente colaborativo.
 
 Qualquer pessoa pode explorar os projetos, reproduzi-los e adaptá-los para criar novas ideias.
+
+Os projetos com firmware usam PlatformIO. Veja o [guia de instalação e uso](docs/platformio.md).
 
 ---
 
