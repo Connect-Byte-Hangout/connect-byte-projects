@@ -141,8 +141,13 @@ status: published
 ```
 
 Execute novamente `.github/maintenance/scripts/prepare-projects`, confira a
-prévia e envie as alterações para revisão no GitHub. A verificação automática do
-GitHub repetirá a validação e confirmará que o catálogo gerado está atualizado.
+prévia e envie as alterações para a branch `develop` no GitHub. A verificação
+automática repetirá a validação, confirmará que o catálogo gerado está atualizado
+e publicará o site pelo GitHub Pages.
+
+Nas configurações do GitHub Pages, a origem deve ser **GitHub Actions**. Não é
+necessário escolher uma pasta ou uma branch nessa tela: a branch `develop` já
+está definida no arquivo `.github/workflows/pages.yml`.
 
 Não edite manualmente a tabela de projetos no `README.md` da raiz nem os arquivos
 gerados dentro de `site/projects/`.

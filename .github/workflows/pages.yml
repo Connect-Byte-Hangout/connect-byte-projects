@@ -2,7 +2,7 @@ name: Publicar galeria no GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
   workflow_dispatch:
 
 permissions:
