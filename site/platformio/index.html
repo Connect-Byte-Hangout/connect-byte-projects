@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Como usar o PlatformIO com o VS Code | Connect Byte</title>
+  <link rel="icon" href="../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="project-page guide-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../"><img class="official-logo" src="../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main class="guide-main">
+    <article class="project-document guide-document"><div class="document-label">Guia de programação</div><h1>Como usar o PlatformIO com o VS Code</h1><p>Os projetos com programação deste repositório usam o mesmo formato:</p>
+<pre><code>firmware/
+├── platformio.ini
+└── src/
+    └── main.cpp</code></pre>
+<p>O <code>platformio.ini</code> identifica a placa e o framework. O código principal fica em <code>src/main.cpp</code>.</p>
+<h3>1. Instalar o Visual Studio Code</h3>
+<ol>
+<li>Acesse a <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">página oficial de download do VS Code</a>.</li>
+<li>Escolha Windows, macOS ou Linux e conclua a instalação.</li>
+<li>Abra o VS Code.</li>
+</ol>
+<h3>2. Instalar o PlatformIO</h3>
+<ol>
+<li>No VS Code, abra <strong>Extensions</strong> na barra lateral.</li>
+<li>Pesquise por <strong>PlatformIO IDE</strong>.</li>
+<li>Instale a extensão oficial publicada pela PlatformIO.</li>
+<li>Aguarde a instalação terminar e reinicie o VS Code se ele solicitar.</li>
+</ol>
+<p>Não é necessário instalar o PlatformIO Core separadamente: ele já acompanha a extensão. Consulte também a <a href="https://docs.platformio.org/en/stable/integration/ide/vscode.html" target="_blank" rel="noopener">documentação oficial do PlatformIO para VS Code</a>.</p>
+<h3>3. Abrir um projeto deste repositório</h3>
+<ol>
+<li>Entre na pasta do projeto em <code>projects/</code>.</li>
+<li>No VS Code, selecione <strong>File &gt; Open Folder</strong>.</li>
+<li>Abra especificamente a pasta <code>firmware/</code> do projeto. Ela é a pasta que contém</li>
+<p>o arquivo <code>platformio.ini</code>.</p>
+<li>Aguarde o PlatformIO preparar as ferramentas da placa na primeira abertura.</li>
+</ol>
+<p>Não abra somente o arquivo <code>main.cpp</code>: o PlatformIO precisa que a pasta com o <code>platformio.ini</code> esteja aberta.</p>
+<h3>4. Compilar e enviar para a placa</h3>
+<p>Na barra inferior do VS Code, use os botões do PlatformIO:</p>
+<ul>
+<li><strong>✓ Build</strong>: verifica e compila o código;</li>
+<li><strong>→ Upload</strong>: compila e grava o programa na placa conectada por USB;</li>
+<li><strong>Plug Monitor</strong>: abre o monitor serial.</li>
+</ul>
+<p>As mesmas ações aparecem em <strong>PlatformIO &gt; Project Tasks</strong>. A documentação oficial descreve os comandos de <a href="https://docs.platformio.org/en/stable/integration/ide/vscode.html#platformio-toolbar" target="_blank" rel="noopener">Build, Upload e Serial Monitor</a>.</p>
+<p>Se o projeto tiver mais de uma placa configurada, escolha o ambiente correto no seletor do PlatformIO. O Tamagotchi, por exemplo, possui ambientes para Arduino Uno e Arduino Nano.</p>
+<h3>5. Antes de fazer Upload</h3>
+<ol>
+<li>Conecte a placa com um cabo USB que também transmita dados.</li>
+<li>Confira se o modelo da placa corresponde ao ambiente do <code>platformio.ini</code>.</li>
+<li>Feche o monitor serial antes do Upload caso a porta esteja ocupada.</li>
+<li>Se houver mais de uma porta USB, selecione a porta correta nas tarefas do</li>
+<p>PlatformIO.</p>
+</ol>
+<h3>Configuração especial do Byte do Milhão</h3>
+<p>O firmware do <code>esp-control</code> usa dados de Wi-Fi e do servidor. Dentro de <code>firmware/include/</code>, copie <code>config.example.h</code> para <code>config.h</code> e substitua todos os valores <code>TODO</code>. O arquivo real é ignorado pelo Git para evitar publicar senha de Wi-Fi.</p></article>
+  </main>
+  <footer class="project-footer"><a href="../#projetos">← Todos os projetos</a></footer>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Byte do Milhão | Connect Byte</title>
+  <link rel="icon" href="../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../"><img class="official-logo" src="../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Byte do Milhão</h1><p>Game show em tempo real da comunidade Connect Byte: Encontro de Junho (FIAP + MagaluCloud).</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="assets/project-jun.jpg" alt="Foto do projeto Byte do Milhão"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-assembly">Guia de montagem</a><a href="#doc-materials">Lista de materiais</a><a href="firmware/src/main.cpp">Ver código do projeto</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Game show em tempo real da comunidade Connect Byte: Encontro de Junho (FIAP + MagaluCloud).</p>
+<p>Usando ESP32 como controles remotos, backend Node.js com WebSocket e frontend Next.js gamificado.</p>
+<p>🔗 <a href="https://wokwi.com/projects/465858648642294785" target="_blank" rel="noopener">Projeto no Wokwi</a></p>
+<hr>
+<h3>🎮 Visão Geral do Projeto</h3>
+<p>O <strong>Byte do Milhão</strong> é um game show interativo para eventos ao vivo da comunidade Connect Byte. As participantes usam controles físicos com ESP32 para responder perguntas em tempo real, com placar atualizado ao vivo e feedback imediato na tela.</p>
+<p align="center">
+  <img src="assets/project-jun.jpg" width="100%">
+</p>
+<hr>
+<h3>🗂️ Estrutura</h3>
+<ul>
+<li><code>backend</code>: Express + Socket.IO + TypeScript, com estado persistido em PostgreSQL.</li>
+<li><code>frontend</code>: Next.js + React + TypeScript + Tailwind CSS.</li>
+<li><code>firmware</code>: código Arduino para ESP32 com botões físicos.</li>
+<li><code>docs</code>: exemplos de integração ESP32.</li>
+</ul>
+<blockquote><strong>TODO:</strong> o backend, o frontend e os exemplos de integração descritos aqui não estão presentes neste repositório.</blockquote>
+<hr>
+<h3>🎯 Fluxo do Jogo</h3>
+<ol>
+<li>Abra a Arena.</li>
+<li>Cadastre uma pergunta real.</li>
+<li>Clique em <strong>Iniciar</strong>.</li>
+<li>Envie respostas via ESP32.</li>
+<li>Clique em <strong>Encerrar</strong>.</li>
+<li>Clique em <strong>Revelar</strong>.</li>
+<li>Veja ranking e relatório.</li>
+</ol>
+<hr>
+<h3>🔌 Endpoints Principais</h3>
+<div class="table-wrap"><table><thead><tr><th>Método</th><th>Rota</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>GET</code></td><td><code>/health</code></td><td>Healthcheck</td></tr>
+<tr><td><code>GET</code></td><td><code>/state</code></td><td>Estado atual do jogo</td></tr>
+<tr><td><code>POST</code></td><td><code>/devices/register</code></td><td>Registrar dispositivo</td></tr>
+<tr><td><code>POST</code></td><td><code>/devices/heartbeat</code></td><td>Heartbeat do dispositivo</td></tr>
+<tr><td><code>POST</code></td><td><code>/questions</code></td><td>Cadastrar pergunta</td></tr>
+<tr><td><code>POST</code></td><td><code>/answers</code></td><td>Enviar resposta</td></tr>
+<tr><td><code>POST</code></td><td><code>/game/start</code></td><td>Iniciar jogo</td></tr>
+<tr><td><code>POST</code></td><td><code>/game/next-question</code></td><td>Próxima pergunta</td></tr>
+<tr><td><code>POST</code></td><td><code>/game/close-question</code></td><td>Encerrar pergunta</td></tr>
+<tr><td><code>POST</code></td><td><code>/game/reveal-question</code></td><td>Revelar resposta</td></tr>
+<tr><td><code>POST</code></td><td><code>/game/reset</code></td><td>Resetar jogo</td></tr>
+<tr><td><code>GET</code></td><td><code>/report</code></td><td>Relatório final</td></tr>
+</tbody></table></div>
+<hr>
+<h3>📦 Payloads de Exemplo</h3>
+<p><strong>Cadastrar pergunta:</strong></p>
+<pre><code>{
+  &quot;text&quot;: &quot;Qual protocolo é muito usado em IoT?&quot;,
+  &quot;options&quot;: {
+    &quot;A&quot;: &quot;SMTP&quot;,
+    &quot;B&quot;: &quot;MQTT&quot;,
+    &quot;C&quot;: &quot;FTP&quot;,
+    &quot;D&quot;: &quot;LDAP&quot;
+  },
+  &quot;correctAnswer&quot;: &quot;B&quot;,
+  &quot;durationSeconds&quot;: 30
+}</code></pre>
+<p><strong>ESP32: resposta:</strong></p>
+<pre><code>{
+  &quot;deviceId&quot;: &quot;esp32-07&quot;,
+  &quot;answer&quot;: &quot;B&quot;
+}</code></pre>
+<p><strong>ESP32: heartbeat:</strong></p>
+<pre><code>{
+  &quot;deviceId&quot;: &quot;esp32-07&quot;
+}</code></pre>
+<hr>
+<h3>📡 Socket.IO</h3>
+<p><strong>Eventos emitidos pelo servidor:</strong></p>
+<ul>
+<li><code>device:online</code> / <code>device:offline</code></li>
+<li><code>answer:received</code></li>
+<li><code>question:started</code> / <code>question:closed</code> / <code>question:revealed</code></li>
+<li><code>ranking:updated</code></li>
+<li><code>narrator:message</code></li>
+<li><code>metrics:updated</code></li>
+<li><code>report:generated</code></li>
+</ul>
+<p><strong>Eventos enviados pelo cliente:</strong></p>
+<ul>
+<li><code>dashboard:join</code></li>
+<li><code>host:start-question</code></li>
+<li><code>host:close-question</code></li>
+<li><code>host:reveal-question</code></li>
+</ul>
+<hr>
+<h3>🏆 Pontuação</h3>
+<div class="table-wrap"><table><thead><tr><th>Condição</th><th>Pontos</th></tr></thead><tbody>
+<tr><td>Resposta correta</td><td>+100</td></tr>
+<tr><td>Até 2s</td><td>+50</td></tr>
+<tr><td>Até 5s</td><td>+30</td></tr>
+<tr><td>Até 10s</td><td>+10</td></tr>
+<tr><td>Sequência ≥ 3</td><td>+25</td></tr>
+<tr><td>Bônus MVP da rodada</td><td>+25</td></tr>
+<tr><td>Resposta errada</td><td>0</td></tr>
+</tbody></table></div>
+<hr>
+<h3>🔧 Testar com ESP32 Físico</h3>
+<p>O código disponível do controle está em <a href="firmware/src/main.cpp"><code>firmware/src/main.cpp</code></a>.</p>
+<blockquote><strong>TODO:</strong> adicionar o guia de configuração do ESP32 e os arquivos de configuração necessários ao firmware.</blockquote>
+<p>Para trabalhar no VS Code, abra o workspace:</p>
+<pre><code>byte-do-milhao.code-workspace</code></pre>
+<p>Exemplo com <code>curl</code>:</p>
+<pre><code>curl -X POST http://localhost:4000/answers \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;deviceId&quot;:&quot;esp32-07&quot;,&quot;answer&quot;:&quot;B&quot;}&#x27;</code></pre>
+<hr>
+<div class="contact-card">
+<h2>Comunidade Connect Byte</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Site</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-assembly"><div class="document-label">Guia de montagem</div><h2>🔌 Guia de Montagem - Controle Byte do Milhão🪙</h2>
+<h4>🛠️ Antes de começar</h4>
+<ul>
+<li><strong>Botões</strong> têm 4 pinos, mas funcionam em pares: os pinos de um mesmo lado estão conectados internamente. Use uma perna de um lado para o sinal e a perna do lado oposto para o GND.</li>
+<li><strong>LED</strong> tem lado: perna maior é <strong>Positivo (+)</strong>, perna menor é <strong>Negativo (-)</strong>.</li>
+<li><strong>Resistor</strong> não tem lado, pode ser soldado em qualquer ponta.</li>
+<li><strong>Buzzer</strong> tem polaridade: o pino marcado com <strong>+</strong> é o positivo.</li>
+<li><strong>Crimpagem</strong>: usar alicate para prender o terminal metálico no fio e depois colocar a capinha plástica.</li>
+</ul>
+<hr>
+<h3>Passo 1: Preparando os Botões 🎮</h3>
+<p>Repita o processo para cada um dos 4 botões.</p>
+<ol>
+<li>Identifique os dois pinos que serão usados: um de um lado do botão, outro do lado oposto.</li>
+<li>Solde um fio em um dos pinos (será o fio que conecta ao ESP32).</li>
+<li>Solde um fio no pino do lado oposto (será o fio que conecta ao GND).</li>
+<li>Crimpe um <strong>terminal fêmea</strong> na ponta livre de cada fio.</li>
+</ol>
+<p>Referência de pinos por botão:</p>
+<ul>
+<li>Botão <strong>Amarelo</strong> → fio que conecta ao ESP32 no <strong>GPIO 23</strong>, fio que conecta ao <strong>GND</strong></li>
+<li>Botão <strong>Azul</strong> → fio que conecta ao ESP32 no <strong>GPIO 22</strong>, fio que conecta ao <strong>GND</strong></li>
+<li>Botão <strong>Verde</strong> → fio que conecta ao ESP32 no <strong>GPIO 21</strong>, fio que conecta ao <strong>GND</strong></li>
+<li>Botão <strong>Vermelho</strong> → fio que conecta ao ESP32 no <strong>GPIO 19</strong>, fio que conecta ao <strong>GND</strong></li>
+</ul>
+<pre><code>GPIO 23 ---- [ BOTÃO AMARELO ] ---- GND
+GPIO 22 ---- [ BOTÃO AZUL    ] ---- GND
+GPIO 21 ---- [ BOTÃO VERDE   ] ---- GND
+GPIO 19 ---- [ BOTÃO VERMELHO] ---- GND</code></pre>
+<hr>
+<h3>Passo 2: Preparando o LED 💡</h3>
+<ol>
+<li>Identifique a <strong>perna maior (Positiva)</strong> do LED.</li>
+<li>Solde o <strong>resistor</strong> na perna maior (+).</li>
+<li>Na outra ponta do resistor, solde um fio (será o fio que conecta ao ESP32).</li>
+<li>Solde um fio na perna menor (Negativo) do LED (será o fio que conecta ao GND).</li>
+<li>Crimpe um <strong>terminal fêmea</strong> na ponta livre de cada fio.</li>
+</ol>
+<hr>
+<h3>Passo 3: Preparando o Buzzer 🔊</h3>
+<ol>
+<li>Identifique o pino <strong>positivo (+)</strong> do buzzer (marcado na carcaça).</li>
+<li>Solde um fio no pino positivo (+) (será o fio que conecta ao ESP32).</li>
+<li>Solde um fio no pino negativo (-) (será o fio que conecta ao GND).</li>
+<li>Crimpe um <strong>terminal fêmea</strong> na ponta livre de cada fio.</li>
+</ol>
+<hr>
+<h3>Passo 4: Conectando no ESP32 🧠</h3>
+<p>Com todos os componentes preparados, plugue os terminais nos pinos correspondentes do ESP32:</p>
+<ul>
+<li>Fio do <strong>LED</strong> (+) → pino <strong>13</strong></li>
+<li>Fio do <strong>LED</strong> (-) → <strong>GND</strong></li>
+<li>Fio do <strong>Buzzer</strong> (+) → pino <strong>2</strong></li>
+<li>Fio do <strong>Buzzer</strong> (-) → <strong>GND</strong></li>
+<li>Fio do <strong>Botão Amarelo</strong> → pino <strong>23</strong>, outro fio → <strong>GND</strong></li>
+<li>Fio do <strong>Botão Azul</strong> → pino <strong>22</strong>, outro fio → <strong>GND</strong></li>
+<li>Fio do <strong>Botão Verde</strong> → pino <strong>21</strong>, outro fio → <strong>GND</strong></li>
+<li>Fio do <strong>Botão Vermelho</strong> → pino <strong>19</strong>, outro fio → <strong>GND</strong></li>
+</ul>
+<hr>
+<h3>Passo 5: Alimentação ⚡</h3>
+<ol>
+<li>Conecte o ESP32 ao computador via <strong>cabo USB</strong>.</li>
+<li>O LED interno do ESP32 deve acender, indicando que está energizado.</li>
+</ol>
+<hr>
+<h3>Passo 6: Teste 🔧</h3>
+<ol>
+<li>Com o circuito montado e o código carregado, abra o <strong>Serial Monitor</strong> na IDE.</li>
+</ol>
+<ol>
+<li>Pressione cada botão e verifique se a mensagem correspondente aparece no monitor:</li>
+</ol>
+<ul>
+<li>Botão Amarelo → <code>Botão A pressionado!</code></li>
+<li>Botão Azul → <code>Botão B pressionado!</code></li>
+<li>Botão Verde → <code>Botão C pressionado!</code></li>
+<li>Botão Vermelho → <code>Botão D pressionado!</code></li>
+</ul>
+<ol>
+<li>A cada clique, o <strong>LED deve piscar</strong> e o <strong>buzzer emitir um bipe curto</strong>.</li>
+</ol>
+<hr>
+<p>🎉 <strong>Pronto! O controle está montado e funcionando.</strong></p>
+<hr></section><section class="project-document" id="doc-materials"><div class="document-label">Lista de materiais</div><h3>🛠️ Lista de Materiais</h3>
+<p>Para montar este projeto, você precisará dos seguintes componentes:</p>
+<ul>
+<li><strong>1x ESP32</strong></li>
+<li><strong>1x Buzzer:</strong></li>
+<li><strong>3x LED:</strong> Para trocar a cor, verificar o resistor correto.</li>
+<li><strong>3x Resistor :</strong>Recomenda-se utilizar valores entre 220Ω e 470Ω, dependendo dos LEDs escolhidos.</li>
+<li><strong>1x Placa Perfurada (Protoboard de Solda / Perfboard)</strong></li>
+<li><strong>4x Botões Grandes</strong></li>
+<li><strong>Fios de conexão (Jumpers):</strong> Para realizar as ligações, não se apegue às cores do diagrama. Siga o padrão: fios mais escuros para negativo (GND) e mais claros para positivo (VCC).</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../#projetos">← Explorar outros projetos</a></footer>
+</body>
+</html>

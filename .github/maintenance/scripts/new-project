@@ -1,0 +1,86 @@
+#!/bin/sh
+set -eu
+
+usage() {
+  echo 'Uso: .github/maintenance/scripts/new-project <slug> ["Nome do projeto"] [--firmware]' >&2
+  echo 'Exemplo: .github/maintenance/scripts/new-project meu-projeto "Meu projeto" --firmware' >&2
+  exit 2
+}
+
+[ "$#" -ge 1 ] && [ "$#" -le 3 ] || usage
+
+slug=$1
+name=TODO
+with_firmware=false
+
+shift
+for argument in "$@"; do
+  case "$argument" in
+    --firmware)
+      with_firmware=true
+      ;;
+    --*)
+      echo "Opção desconhecida: $argument" >&2
+      usage
+      ;;
+    *)
+      [ "$name" = "TODO" ] || usage
+      name=$argument
+      ;;
+  esac
+done
+
+case "$slug" in
+  ''|*[!a-z0-9-]*|-*|*-|*--*)
+    echo "Slug inválido: use lowercase kebab-case sem acentos." >&2
+    exit 2
+    ;;
+esac
+
+repo_dir=$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)
+target="$repo_dir/projects/$slug"
+
+if [ -e "$target" ]; then
+  echo "O projeto já existe: projects/$slug" >&2
+  exit 1
+fi
+
+cp -R "$repo_dir/.github/maintenance/templates/project" "$target"
+mkdir -p "$target/assets" "$target/hardware"
+
+if [ "$with_firmware" = true ]; then
+  cp -R "$repo_dir/.github/maintenance/templates/platformio" "$target/firmware"
+fi
+
+python3 - "$target/project.yml" "$target/README.md" "$slug" "$name" "$with_firmware" <<'PY'
+from pathlib import Path
+import sys
+
+metadata, readme, slug, name, with_firmware = sys.argv[1:]
+metadata_path = Path(metadata)
+content = (
+    metadata_path.read_text(encoding="utf-8")
+    .replace("name: TODO", f"name: {name}", 1)
+    .replace("slug: TODO", f"slug: {slug}", 1)
+)
+if with_firmware == "true":
+    content = content.replace("has_firmware: false", "has_firmware: true", 1)
+metadata_path.write_text(content, encoding="utf-8")
+if name != "TODO":
+    readme_path = Path(readme)
+    readme_path.write_text(
+        readme_path.read_text(encoding="utf-8").replace(
+            "# TODO: Nome do projeto", f"# {name}", 1
+        ),
+        encoding="utf-8",
+    )
+PY
+
+echo "Projeto criado em projects/$slug"
+if [ "$with_firmware" = true ]; then
+  echo "O modelo do PlatformIO foi criado em projects/$slug/firmware"
+else
+  echo "Projeto criado sem firmware (has_firmware: false)"
+fi
+echo "Agora preencha os TODOs e execute:"
+echo ".github/maintenance/scripts/prepare-projects"

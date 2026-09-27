@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Carro Alegórico Robótico com Arduino | Connect Byte</title>
+  <link rel="icon" href="../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../"><img class="official-logo" src="../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Carro Alegórico Robótico com Arduino</h1><p>Um projeto criativo de robótica onde as participantes constroem um carro alegórico autônomo utilizando Arduino.</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="assets/carnaval-1.jpg" alt="Foto do projeto Carro Alegórico Robótico com Arduino"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-materials">Lista de materiais</a><a href="firmware/src/main.cpp">Ver código do projeto</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Um projeto criativo de robótica onde as participantes constroem um carro alegórico autônomo utilizando Arduino.</p>
+<p>Este projeto foi desenvolvido durante um encontro prático da Connect Byte e introduz conceitos básicos de robótica, controle de motores e lógica de programação.</p>
+<hr>
+<h3>Visão geral</h3>
+<p>Neste projeto as participantes constroem um pequeno carro alegórico robótico (Robô Polvo) que executa uma coreografia programada.</p>
+<p>Utilizando um driver de motor, o Arduino controla dois motores DC para andar para frente, parar e girar exatamente 90 graus. Ao mesmo tempo, um LED pisca simulando um "ritmo de samba".</p>
+<p>Este projeto apresenta conceitos fundamentais como:</p>
+<ul>
+<li>robótica básica e cinemática</li>
+<li>controle de motores DC via Ponte H (Driver L9110S)</li>
+<li>sequências de movimento usando máquinas de estado</li>
+<li>multitarefas baseadas em tempo (usando <code>millis()</code>)</li>
+</ul>
+<hr>
+<h3>Objetivos de aprendizado</h3>
+<p>Ao concluir este projeto, as participantes aprendem:</p>
+<ul>
+<li>como conectar um driver de motor ao Arduino e aos motores DC</li>
+<li>como controlar a direção e velocidade dos motores através do código</li>
+<li>como calcular tempos de giro usando matemática básica (raio e distância da roda)</li>
+<li>como executar tarefas paralelas, como piscar um LED sem interromper o movimento do robô</li>
+</ul>
+<hr>
+<h3>Circuito</h3>
+<p>Conecte os componentes tendo atenção às conexões do driver de motor.</p>
+<p>Ligação básica:</p>
+<ul>
+<li>Motor Direito → Driver L9110S → Pinos 7 (A) e 8 (B) do Arduino</li>
+<li>Motor Esquerdo → Driver L9110S → Pinos 4 (A) e 5 (B) do Arduino</li>
+<li>LED "Olho do Polvo" → resistor → Pino 11 do Arduino</li>
+</ul>
+<hr>
+<h3>Ambiente de desenvolvimento</h3>
+<p>Este projeto foi desenvolvido utilizando <strong>Visual Studio Code</strong> com a extensão <strong>PlatformIO</strong>.</p>
+<p>O PlatformIO fornece um ambiente profissional para desenvolvimento de sistemas embarcados, incluindo gerenciamento de projetos, gerenciamento de dependências e ferramentas para envio de código para o dispositivo.</p>
+<p>Ferramentas utilizadas:</p>
+<ul>
+<li>Visual Studio Code</li>
+<li>Extensão PlatformIO</li>
+<li>Arduino Framework</li>
+</ul>
+<hr>
+<h3>Código</h3>
+<p>O código de exemplo está disponível na pasta <code>code</code>.</p>
+<p>O projeto pode ser aberto utilizando <strong>PlatformIO no Visual Studio Code</strong>.</p>
+<p>Arquivo principal:</p>
+<pre><code>firmware/src/main.cpp</code></pre>
+<p>Para entender a lógica e as máquinas de estado a fundo, assista à <a href="https://drive.google.com/file/d/1SJ_JABWWWgHsd38rvRdCPOPwIJ-EQPhp/view" target="_blank" rel="noopener">gravação do nosso encontro</a> com o passo a passo do código.</p>
+<h3>Como funciona</h3>
+<p>O Arduino envia sinais digitais e PWM (Modulação por Largura de Pulso) para o driver L9110S, que os traduz em energia para girar os motores para frente ou para trás.</p>
+<p>O movimento é controlado por uma máquina de estados que dita a coreografia do carro passo a passo. Simultaneamente, a função <code>millis()</code> verifica o tempo para piscar o LED em um ritmo de samba 2/4 sem pausar o funcionamento dos motores.</p>
+<p>Veja mais em nosso <a href="https://www.canva.com/design/DAG_Xh8P50w/FBFa6IrBuQ4W8jjsY-pvWw/edit" target="_blank" rel="noopener">workshop</a>.</p>
+<h3>Possíveis extensões</h3>
+<p>Depois que o carro alegórico básico estiver funcionando, é possível experimentar:</p>
+<ul>
+<li>sensores ultrassônicos para desviar de obstáculos</li>
+<li>módulos seguidores de linha</li>
+<li>módulos bluetooth para controlar o carro pelo celular</li>
+<li>novas coreografias e ritmos de LED</li>
+</ul>
+<hr>
+<div class="contact-card">
+<h2>Comunidade Connect Byte</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Site</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-materials"><div class="document-label">Lista de materiais</div><h3>Lista de materiais</h3>
+<ul>
+<li>Arduino Uno (ou compatível)</li>
+<li>L9110S Dual Motor Driver (Driver de Motor L9110S)</li>
+<li>2x Motores DC com rodas</li>
+<li>LED</li>
+<li>220Ω resistor</li>
+<li>Suporte para pilhas e pilhas para os motores</li>
+<li>Protoboard</li>
+<li>Fios jumper</li>
+<li>Cabo USB</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../#projetos">← Explorar outros projetos</a></footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+name: Publicar galeria no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v6
+
+      - name: Validar projetos
+        run: .github/maintenance/scripts/validate-projects
+
+      - name: Gerar dados dos projetos
+        run: .github/maintenance/scripts/generate-catalog
+
+      - name: Preparar site
+        run: |
+          mkdir _site
+          cp -R site/. _site/
+          cp banner.png _site/banner.png
+          mkdir -p _site/projects
+          for project in projects/*; do
+            slug="$(basename "$project")"
+            mkdir -p "_site/projects/$slug"
+            cp -R "$project/." "_site/projects/$slug/"
+          done
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Enviar site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Mother's Day Illuminated Canvases",
+    "slug": "canvas-led",
+    "summary": "A special project where participants build decorative canvases that come to life in the dark, combining handmade art and electronics in a light and affectionate way 💝 This project was developed for the Connect Byte Mother's Day workshop and introduces electronics concepts through a creative and meaningful experience.",
+    "has_firmware": false,
+    "cover": "../projects/canvas-led/assets/encontro-maio-3.jpg",
+    "url": "../projects/canvas-led/en/"
+  },
+  {
+    "name": "Catapult Mission",
+    "slug": "catapult-halloween-arduino",
+    "summary": "A practical project combining basic engineering and reasoning, where participants build a functional catapult by solving challenges.",
+    "has_firmware": false,
+    "cover": "../projects/catapult-halloween-arduino/assets/catapult.png",
+    "url": "../projects/catapult-halloween-arduino/en/"
+  },
+  {
+    "name": "Byte do Milhão 💜🎮",
+    "slug": "esp-control",
+    "summary": "Real-time game show by the Connect Byte community: June Meetup (FIAP + MagaluCloud).",
+    "has_firmware": true,
+    "cover": "../projects/esp-control/assets/project-jun.jpg",
+    "url": "../projects/esp-control/en/"
+  },
+  {
+    "name": "Arduino Float Car Robot",
+    "slug": "float-car-arduino",
+    "summary": "A creative robotics project where participants build an autonomous float car robot using Arduino.",
+    "has_firmware": true,
+    "cover": "../projects/float-car-arduino/assets/carnaval-1.jpg",
+    "url": "../projects/float-car-arduino/en/"
+  },
+  {
+    "name": "Automatic Plant Irrigator with Arduino",
+    "slug": "irrigador-automatico",
+    "summary": "A practical home automation project where participants build a system that monitors soil moisture and irrigates plants automatically.",
+    "has_firmware": true,
+    "cover": "../projects/irrigador-automatico/assets/first-girls.png",
+    "url": "../projects/irrigador-automatico/en/"
+  },
+  {
+    "name": "Arduino LED Lamp",
+    "slug": "lamp-led-arduino",
+    "summary": "A simple creative electronics project where participants build a small LED lamp using Arduino.",
+    "has_firmware": true,
+    "cover": "../projects/lamp-led-arduino/assets/lamp-3.jpg",
+    "url": "../projects/lamp-led-arduino/en/"
+  },
+  {
+    "name": "Mechanical Melody",
+    "slug": "mechanical-melody",
+    "summary": "A creative electronics project where participants build an interactive sound box using an Arduino, a membrane keypad, and a buzzer.",
+    "has_firmware": false,
+    "cover": "../projects/mechanical-melody/assets/soundbox-2.png",
+    "url": "../projects/mechanical-melody/en/"
+  },
+  {
+    "name": "Physical Financial Planner",
+    "slug": "physical-financial-planner",
+    "summary": "A planner that connects financial organization on paper, data recognition on the Connect Byte website, and goal tracking on a physical device with an ESP32-C3 and OLED display.",
+    "has_firmware": true,
+    "cover": "../projects/physical-financial-planner/assets/financial-planner-example.jpeg",
+    "url": "../projects/physical-financial-planner/en/"
+  },
+  {
+    "name": "Interactive LED Planner",
+    "slug": "planner-led",
+    "summary": "A hands-on electronics project where participants build an interactive habit tracker or daily planner inside a picture frame.",
+    "has_firmware": false,
+    "cover": "../projects/planner-led/assets/planner-1.jpg",
+    "url": "../projects/planner-led/en/"
+  },
+  {
+    "name": "Easter Physical Tamagotchi",
+    "slug": "tamagotchi-pascoa",
+    "summary": "A creative electronics project where participants build an interactive Easter-themed object that blends crafting, storytelling, and hardware in a playful and hands-on way ✨",
+    "has_firmware": true,
+    "cover": "../projects/tamagotchi-pascoa/assets/pascoa-1.jpg",
+    "url": "../projects/tamagotchi-pascoa/en/"
+  },
+  {
+    "name": "Arduino RGB TV",
+    "slug": "tv-led-arduino",
+    "summary": "A creative electronics project where participants build a mini cardboard television with interactive RGB lighting controlled by an Arduino and a push-button.",
+    "has_firmware": true,
+    "cover": "../projects/tv-led-arduino/assets/tv-3.jpeg",
+    "url": "../projects/tv-led-arduino/en/"
+  }
+]

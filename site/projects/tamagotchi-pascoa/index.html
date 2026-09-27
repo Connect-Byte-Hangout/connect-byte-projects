@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Tamagotchi Físico de Páscoa | Connect Byte</title>
+  <link rel="icon" href="../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../"><img class="official-logo" src="../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Tamagotchi Físico de Páscoa</h1><p>Um projeto de eletrônica criativa onde as participantes constroem um objeto interativo com tema de Páscoa, misturando arte, narrativa e hardware de forma leve e divertida ✨</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="assets/pascoa-1.jpg" alt="Foto do projeto Tamagotchi Físico de Páscoa"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-materials">Lista de materiais</a><a href="firmware/src/main.cpp">Ver código do projeto</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Um projeto de eletrônica criativa onde as participantes constroem um objeto interativo com tema de Páscoa, misturando arte, narrativa e hardware de forma leve e divertida ✨</p>
+<p>Este projeto foi desenvolvido para um workshop da Connect Byte e introduz conceitos fundamentais de eletrônica por meio de uma experiência acessível e prática.</p>
+<h3>🎨 Visão Geral do Projeto</h3>
+<p>Neste projeto, as participantes irão criar e montar um pequeno artefato interativo utilizando materiais simples e componentes eletrônicos.</p>
+<p>A experiência é dividida em dois momentos: uma fase criativa focada em personalização e design visual, e uma fase de eletrônica onde a interação é adicionada com luz e/ou som. Dependendo do nível escolhido, o projeto responde a toque (botão) ou a estímulos do ambiente (som), criando um comportamento interativo simples e envolvente.</p>
+<h3>✨ Como a "Mágica" Funciona</h3>
+<p>Este projeto foi pensado para ser acessível para iniciantes, criativo e modular. Cada participante pode escolher o seu nível de complexidade:</p>
+<p><strong>🌱 Nível 1: Básico:</strong> Um circuito simples alimentado por bateria moeda. Quando o botão (push-button) é pressionado, a corrente flui e a luz acende. Ao soltar, a luz apaga.</p>
+<p><strong>⚡ Nível 2: Intermediário:</strong> Um circuito interativo com Arduino. Um sensor de som (KY-038) detecta um som forte no ambiente. O Arduino processa esse sinal e ativa uma saída, ligando simultaneamente uma luz (LED) e um som (Buzzer).</p>
+<h3>🧩 Como Vamos Integrar Arte e Eletrônica</h3>
+<p>Para garantir uma integração perfeita entre o objeto artesanal e o hardware, este projeto introduz conceitos chave como:</p>
+<ol>
+<li><em>Eletrônica Básica:</em> Compreender Tensão, Corrente, GND, como os LEDs funcionam e por que os resistores são importantes.</li>
+<li><em>Circuitos Simples:</em> Criação de interações independentes usando baterias CR2032 e botões para o Nível 1.</li>
+<li><em>Lógica de Microcontrolador:</em> Leitura de sinais do ambiente com sensores e uso de um Arduino (Nano ou Uno) para controlar o comportamento interativo no Nível 2.</li>
+</ol>
+<h3>🛠️ Resumo Técnico para a Montagem (Hardware)</h3>
+<p>Não é necessário ter experiência prévia com eletrônica. Pode optar por construir a versão Básica ou a Intermediária.</p>
+<ul>
+<li><strong>Circuito Nível 1:</strong> Bateria (+) → Botão → Resistor → LED (+) → LED (–) → Bateria (–). Confira o passo-a-passo da <a href="assets/projeto-basico-pascoa.pdf">montagem</a>.</li>
+</ul>
+<ul>
+<li><strong>Circuito Nível 2:</strong> Construído com Arduino (Nano ou Uno), sensor de som, buzzer e LED com resistor, com alimentação via USB. Confira o passo-a-passo da <a href="assets/projeto-intermediario-pascoa.pdf">montagem</a>.</li>
+</ul>
+<ul>
+<li><strong>Código (Nível 2):</strong> O código de exemplo está disponível na pasta <code>firmware</code>. Pode ser aberto usando PlatformIO no Visual Studio Code. Confira o <a href="firmware/src/main.cpp">código</a>.</li>
+</ul>
+<ul>
+<li><strong>Workshop:</strong> Confira nosso encontro com a explicação do projeto no <a href="https://youtu.be/r3VPI3xCQUY?si=Go0TAlsu_vlTtzGe" target="_blank" rel="noopener">youtube</a>.</li>
+</ul>
+<hr>
+<p align="center">
+  <img src="assets/pascoa-3.jpg" width="100%">
+</p>
+<div class="contact-card">
+<h2>Comunidade Connect Byte</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Site</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-materials"><div class="document-label">Lista de materiais</div><h3>Lista de materiais</h3>
+<h4>Basic Project:</h4>
+<ul>
+<li>LED</li>
+</ul>
+<ul>
+<li>Resistor (220Ω)</li>
+</ul>
+<ul>
+<li>Botão</li>
+</ul>
+<ul>
+<li>Bateria tipo moeda (CR2032)</li>
+</ul>
+<ul>
+<li>Fios jumper</li>
+</ul>
+<h4>Intermediate Project</h4>
+<ul>
+<li>LED</li>
+</ul>
+<ul>
+<li>220Ω or 150Ω resistors</li>
+</ul>
+<ul>
+<li>Buzzer</li>
+</ul>
+<ul>
+<li>Sensor de som (KY-038)</li>
+</ul>
+<ul>
+<li>Arduino (Nano or Uno)</li>
+</ul>
+<ul>
+<li>Fios jumper</li>
+</ul>
+<ul>
+<li>Cabo USB</li>
+</ul>
+<ul>
+<li>Protoboard (optional)</li>
+</ul>
+<ul>
+<li>Battery holder and AA batteries (optional)</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../#projetos">← Explorar outros projetos</a></footer>
+</body>
+</html>

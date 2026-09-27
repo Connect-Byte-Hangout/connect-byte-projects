@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""Gera, serve e atualiza automaticamente a prévia local do site."""
+
+from __future__ import annotations
+
+import http.server
+import os
+import shutil
+import subprocess
+import tempfile
+import threading
+import time
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[3]
+PORT = int(os.environ.get("PORT", "4173"))
+PREVIEW = Path(tempfile.mkdtemp(prefix="connect-byte-preview-"))
+
+
+def source_files() -> list[Path]:
+    files = [
+        ROOT / ".github/maintenance/scripts/generate-catalog",
+        ROOT / ".github/maintenance/scripts/validate-projects",
+        ROOT / "docs/platformio.md",
+        ROOT / "docs/platformio.en.md",
+        ROOT / "site/index.html",
+        ROOT / "site/en/index.html",
+        ROOT / "site/app.js",
+        ROOT / "site/styles.css",
+    ]
+    files.extend(path for path in (ROOT / "projects").rglob("*") if path.is_file() and ".pio" not in path.parts)
+    files.extend(path for path in (ROOT / "site/assets").rglob("*") if path.is_file())
+    return files
+
+
+def signature() -> tuple[tuple[str, int, int], ...]:
+    return tuple(
+        sorted(
+            (str(path.relative_to(ROOT)), path.stat().st_mtime_ns, path.stat().st_size)
+            for path in source_files()
+            if path.exists()
+        )
+    )
+
+
+def copy_contents(source: Path, destination: Path) -> None:
+    destination.mkdir(parents=True, exist_ok=True)
+    for item in source.iterdir():
+        target = destination / item.name
+        if item.is_dir():
+            shutil.copytree(item, target, dirs_exist_ok=True)
+        else:
+            shutil.copy2(item, target)
+
+
+def build() -> bool:
+    result = subprocess.run(
+        [str(ROOT / ".github/maintenance/scripts/prepare-projects")],
+        cwd=ROOT,
+        check=False,
+    )
+    if result.returncode != 0:
+        print("A prévia anterior foi mantida. Corrija os erros indicados acima.", flush=True)
+        return False
+
+    for item in PREVIEW.iterdir():
+        if item.is_dir():
+            shutil.rmtree(item)
+        else:
+            item.unlink()
+    copy_contents(ROOT / "site", PREVIEW)
+    shutil.copy2(ROOT / "banner.png", PREVIEW / "banner.png")
+    projects_destination = PREVIEW / "projects"
+    for project in (ROOT / "projects").iterdir():
+        if project.is_dir():
+            copy_contents(project, projects_destination / project.name)
+    print("Prévia atualizada. Recarregue a página no navegador.", flush=True)
+    return True
+
+
+def watch() -> None:
+    previous = signature()
+    while True:
+        time.sleep(1)
+        current = signature()
+        if current != previous:
+            print("Alteração encontrada; atualizando a prévia...", flush=True)
+            build()
+            previous = signature()
+
+
+class PreviewHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self) -> None:
+        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
+        super().end_headers()
+
+
+def main() -> None:
+    try:
+        if not build():
+            raise SystemExit(1)
+        watcher = threading.Thread(target=watch, daemon=True)
+        watcher.start()
+        handler = lambda *args, **kwargs: PreviewHandler(*args, directory=str(PREVIEW), **kwargs)
+        with http.server.ThreadingHTTPServer(("127.0.0.1", PORT), handler) as server:
+            print(f"Prévia disponível em http://127.0.0.1:{PORT}/", flush=True)
+            print("Edite os arquivos e recarregue o navegador. Para encerrar, pressione Ctrl+C.", flush=True)
+            server.serve_forever()
+    except KeyboardInterrupt:
+        print("\nPrévia encerrada.", flush=True)
+    finally:
+        shutil.rmtree(PREVIEW, ignore_errors=True)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Irrigador Automático com Arduino | Connect Byte</title>
+  <link rel="icon" href="../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../"><img class="official-logo" src="../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Irrigador Automático com Arduino</h1><p>Um projeto prático de automação residencial onde as participantes constroem um sistema que monitora a umidade do solo e irriga plantas automaticamente.</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="assets/first-girls.png" alt="Foto do projeto Irrigador Automático com Arduino"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-materials">Lista de materiais</a><a href="firmware/src/main.cpp">Ver código do projeto</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Um projeto prático de automação residencial onde as participantes constroem um sistema que monitora a umidade do solo e irriga plantas automaticamente.</p>
+<p>Este projeto foi desenvolvido durante um encontro prático da <strong>Connect Byte</strong> e introduz conceitos de sensores analógicos e controle de atuadores (bombas d'água) via relé.</p>
+<hr>
+<h3>Visão geral</h3>
+<p>Neste projeto, as participantes constroem um sistema inteligente que detecta quando uma planta precisa de água utilizando um sensor de umidade de solo.</p>
+<p>O Arduino processa os dados do sensor e, se o solo estiver seco, aciona uma mini bomba d'água através de um módulo relé.</p>
+<p>Este projeto apresenta conceitos fundamentais como:</p>
+<ul>
+<li>Leitura de sensores analógicos</li>
+<li>Uso de módulos relé para controle de carga externa</li>
+<li>Estruturas condicionais (if/else) na programação</li>
+<li>Automação básica de processos</li>
+</ul>
+<hr>
+<h3>Objetivos de aprendizado</h3>
+<p>Ao concluir este projeto, as participantes aprendem:</p>
+<ul>
+<li>Como coletar dados do ambiente usando sensores</li>
+<li>A diferença entre sinais analógicos e digitais</li>
+<li>Como isolar e controlar circuitos de maior potência (bomba) usando relés</li>
+<li>Lógica de calibração de sensores no código</li>
+</ul>
+<hr>
+<h3>Circuito</h3>
+<p>Conecte os componentes conforme mostrado no diagrama (disponível na pasta assets).</p>
+<p><img src="assets/first-girls.png" alt="Circuito" loading="lazy"></p>
+<p><strong>Ligação básica:</strong></p>
+<ul>
+<li>Sensor de Umidade → Pino A0 (Analógico)</li>
+<li>Módulo Relé → Pino 7 (Digital)</li>
+<li>Bomba d'água → Conectada à saída do Relé e fonte externa</li>
+</ul>
+<hr>
+<h3>Ambiente de desenvolvimento</h3>
+<p>Este projeto foi desenvolvido utilizando <strong>Visual Studio Code</strong>.</p>
+<p>Ferramentas utilizadas:</p>
+<ul>
+<li>Visual Studio Code</li>
+<li>Extensão Arduino / PlatformIO</li>
+<li>Arduino Framework</li>
+</ul>
+<hr>
+<h3>Código</h3>
+<p>O código de exemplo está disponível na pasta <code>code</code>.</p>
+<p>Arquivo principal: <code>firmware/src/main.cpp</code></p>
+<hr>
+<h3>Como funciona</h3>
+<p>O Arduino lê constantemente o valor analógico do sensor de umidade. Quando o solo seca, a resistência aumenta e o valor lido ultrapassa o limite definido (setpoint).</p>
+<p>Ao detectar o solo seco, o Arduino envia um sinal, que "fecha o interruptor" e liga a bomba d'água até que o solo esteja úmido novamente.</p>
+<div class="contact-card">
+<h2>Comunidade Connect Byte</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Site</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-materials"><div class="document-label">Lista de materiais</div><h3>Lista de materiais</h3>
+<ul>
+<li>Arduino Uno</li>
+<li>Sensor de umidade de solo</li>
+<li>5V Relay Module (Módulo Relé)</li>
+<li>Mini Water Pump (Mini bomba d'água)</li>
+<li>Protodboard</li>
+<li>Fios jumper</li>
+<li>Cabo USB</li>
+<li>Mangueira</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../#projetos">← Explorar outros projetos</a></footer>
+</body>
+</html>

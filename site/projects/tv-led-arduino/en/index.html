@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Arduino RGB TV | Connect Byte</title>
+  <link rel="icon" href="../../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../../en/"><img class="official-logo" src="../../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Language"><a href="../">PT</a><strong>EN</strong></span><a class="back-link" href="../../../en/#projects">← All projects</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../../en/#projects">Projects /</a><span class="project-type">Firmware available</span><h1>Arduino RGB TV</h1><p>A creative electronics project where participants build a mini cardboard television with interactive RGB lighting controlled by an Arduino and a push-button.</p><div class="hero-actions"><a class="button primary" href="#content">Start this project</a><a class="button secondary" href="../firmware/src/main.cpp">View project code</a></div></div><img src="../assets/tv-3.jpeg" alt="Project photo Arduino RGB TV"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>In this project</strong><a href="#overview">Overview</a><a href="#doc-materials">Materials</a><a href="../firmware/src/main.cpp">View project code</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">About the project</div><p>A creative electronics project where participants build a mini cardboard television with interactive RGB lighting controlled by an Arduino and a push-button.</p>
+<p>This project was developed during a Connect Byte monthly workshop and introduces fundamental concepts of electronics, color mixing, and embedded programming.</p>
+<hr>
+<h3>Overview</h3>
+<p>In this project, participants build a custom "TV" casing and wire an interactive circuit.</p>
+<p>Using an Arduino, an RGB LED, and a push-button, the system mimics changing TV channels. Each time the button is pressed, the Arduino updates a state machine to change the color of the screen (Red, Green, Blue, Party Mode, or Off).</p>
+<p>This project introduces key concepts such as:</p>
+<ul>
+<li>basic electronics (Voltage, Current, and GND)</li>
+<li>the importance of resistors for current limiting</li>
+<li>how RGB LEDs work and how to mix colors using PWM</li>
+<li>reading digital inputs (buttons) and debouncing</li>
+<li>state machines and <code>switch/case</code> logic</li>
+</ul>
+<hr>
+<h3>Circuit</h3>
+<ul>
+<li><strong>RGB LED</strong> → Connect each color leg (R, G, B) to a 220Ω resistor, then to Arduino PWM pins (e.g., 9, 10, 11). Connect the common leg to GND or 5V (depending on the LED type).</li>
+<li><strong>Push-button</strong> → One side to GND, the other to Arduino digital pin 2 (using internal <code>INPUT_PULLUP</code>).</li>
+<li><strong>Power</strong> → The system can be powered by a battery holder connected to the Arduino's VIN and GND pins.</li>
+</ul>
+<hr>
+<h3>Code</h3>
+<p>The example code is available in the <code>code</code> folder.</p>
+<p>The project can be opened using <strong>PlatformIO in Visual Studio Code</strong>.</p>
+<p>Main file: <code>firmware/src/main.cpp</code></p>
+<p>For a deeper dive into reading button states, <code>millis()</code> debouncing, and programming the TV channels, watch our <a href="https://www.youtube.com/watch?v=jdX4qP33tmc" target="_blank" rel="noopener">workshop recording</a> where we explain the code step-by-step.</p>
+<p>See more in our <a href="https://www.canva.com/design/DAHD3Qv_aYI/iuNidV_qm2hbHpIOjla_cA/edit?utm_content=DAHD3Qv_aYI&amp;amp;utm_campaign=designshare&amp;amp;utm_medium=link2&amp;amp;utm_source=sharebutton" target="_blank" rel="noopener">workshop</a>.</p>
+<hr>
+<div class="contact-card">
+<h2>Connect Byte community</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Website</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-materials"><div class="document-label">Materials</div><h3>Materials</h3>
+<ul>
+<li>Arduino Uno (or compatible)</li>
+<li>RGB LED (LED RGB)</li>
+<li>Simple LED (optional, for basic testing)</li>
+<li>220Ω or 150Ω resistors</li>
+<li>Push-button (Botão)</li>
+<li>Battery holder and AA batteries</li>
+<li>Breadboard</li>
+<li>Jumper wires</li>
+<li>USB cable</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../../en/#projects">← Explore other projects</a></footer>
+</body>
+</html>

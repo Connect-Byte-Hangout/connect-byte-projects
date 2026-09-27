@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+repo_dir=$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)
+cd "$repo_dir"
+
+.github/maintenance/scripts/generate-catalog
+.github/maintenance/scripts/validate-projects
+
+echo "Tudo pronto: catálogo e páginas atualizados, projetos validados."

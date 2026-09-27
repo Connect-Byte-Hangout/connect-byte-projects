@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Mother&#x27;s Day Illuminated Canvases | Connect Byte</title>
+  <link rel="icon" href="../../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../../en/"><img class="official-logo" src="../../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Language"><a href="../">PT</a><strong>EN</strong></span><a class="back-link" href="../../../en/#projects">← All projects</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../../en/#projects">Projects /</a><span class="project-type">No firmware available</span><h1>Mother&#x27;s Day Illuminated Canvases</h1><p>A special project where participants build decorative canvases that come to life in the dark, combining handmade art and electronics in a light and affectionate way 💝 This project was developed for the Connect Byte Mother&#x27;s Day workshop and introduces electronics concepts through a creative and meaningful experience.</p><div class="hero-actions"><a class="button primary" href="#content">Start this project</a></div></div><img src="../assets/encontro-maio-3.jpg" alt="Project photo Mother&#x27;s Day Illuminated Canvases"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>In this project</strong><a href="#overview">Overview</a><a href="#doc-assembly">Assembly guide</a><a href="#doc-materials">Materials</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">About the project</div><p>A special project where participants build decorative canvases that come to life in the dark, combining handmade art and electronics in a light and affectionate way 💝 This project was developed for the Connect Byte Mother's Day workshop and introduces electronics concepts through a creative and meaningful experience.</p>
+<h3>🎨 Project Overview</h3>
+<p>In this project, participants create a decorative canvas with a built-in electronic circuit capable of reacting automatically to ambient light.</p>
+<p>The proposal is to unite artistic creation and basic electronics into something that goes beyond decoration. During the day, the mother sees only the composition on the canvas (a painting, collage, or personalized message). At dusk or when the lights go out, a surprise element lights up on its own, revealing a new detail of the artwork.</p>
+<h3>✨ How the "Magic" Works</h3>
+<p>The heart of this project is an autonomous light detector circuit. Without buttons or manual triggers, an LDR sensor continuously monitors ambient lighting. As soon as the room gets dark, the circuit is automatically activated, releasing power from the battery and turning on the LED integrated into the art.</p>
+<p>This luminous element can represent different details of the composition, creating a surprise effect on the canvas.</p>
+<h3>🧩 How We'll Integrate Art and Electronics</h3>
+<p>For the project to work best, it's essential that aesthetics and electronics work in harmony. The main points of attention for assembly are:</p>
+<ol>
+<li><em>Camouflage and positioning:</em> the circuit, battery, and wires are hidden on the back of the canvas, preserving the artistic appearance of the piece.</li>
+</ol>
+<ol>
+<li><em>The "Eye" of the canvas:</em> the LDR sensor, responsible for detecting ambient light, needs to be positioned in a strategic spot on the front of the canvas or on one of its edges to capture ambient light. Therefore, it cannot be completely covered by the art.</li>
+</ol>
+<ol>
+<li><em>The LED (surprise element):</em> the LED discreetly goes through the canvas from back to front to compose the art and create the luminous effect.</li>
+</ol>
+<h3>🛠️ Technical Summary for Assembly (Hardware)</h3>
+<p>The circuit was designed to be compact, safe, and low-voltage, requiring no wall outlet connection. The whole system works autonomously, ensuring practicality and safety for the decorative piece.</p>
+<ul>
+<li><strong>Step-by-step:</strong> Check the assembly instructions in the <a href="#doc-assembly">assembly</a> guide.</li>
+</ul>
+<ul>
+<li><strong>Circuit Simulation:</strong> Simulate the circuit on the web at <a href="https://wokwi.com/projects/463645117690066945" target="_blank" rel="noopener">Wokwi</a>.</li>
+</ul>
+<ul>
+<li><strong>Workshop:</strong> Watch our <a href="https://www.youtube.com/watch?v=hPPSX-9uRHw" target="_blank" rel="noopener">workshop recording</a> here. You can also check the code of the meeting <a href="https://wokwi.com/projects/465207679102754817" target="_blank" rel="noopener">here</a>.</li>
+</ul>
+<hr>
+<p align="center">
+  <img src="../assets/encontro-maio-2.jpg" width="100%">
+</p>
+<div class="contact-card">
+<h2>Connect Byte community</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Website</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-assembly"><div class="document-label">Assembly guide</div><h2>🔌 Project Assembly Guide</h2>
+<h4>🛠️ Before You Start</h4>
+<ul>
+<li><strong>Resistors</strong> have no polarity: they can be soldered in either direction.</li>
+<li><strong>LEDs</strong> do have polarity: the longer leg is Positive (+), the shorter leg is Negative (−).</li>
+<li><strong>Crimping:</strong> use pliers to clamp the metal terminal onto the wire, then slide the plastic sleeve over it.</li>
+<li><strong>Assembly:</strong> check the project diagram <a href="../hardware/diagram.jpg">here</a>.</li>
+</ul>
+<hr>
+<h3>Step 1: Preparing the LED ✨</h3>
+<ol>
+<li>Identify the longer (Positive) leg of the LED.</li>
+<li>Solder the resistor to that longer leg.</li>
+<li>On the other end of the resistor, solder a light-colored wire (to mark it as positive).</li>
+<li>Solder a dark-colored wire to the shorter (Negative) leg of the LED.</li>
+<li>Crimp a female terminal onto the free end of the light-colored wire.</li>
+</ol>
+<ul>
+<li>Leave the dark wire without a terminal for now.</li>
+</ul>
+<hr>
+<h3>Step 2: Battery Connection 🔋</h3>
+<p>The CR2032 battery cannot be soldered. We'll use the electrical tape trick instead.</p>
+<ol>
+<li>Strip about 2 cm from the ends of a light-colored (Positive) and a dark-colored (Negative) wire.</li>
+<li>Flatten the exposed copper ends into a small fan or brush shape.</li>
+<li>Press the light wire against the Positive (+) side of the battery and secure it with electrical tape.</li>
+<li>Press the dark wire against the Negative (−) side and tape it down as well.</li>
+<li>Wrap a full loop of electrical tape around the battery to hold both wires firmly in place.</li>
+<li>Crimp a female terminal onto the free end of the light-colored wire.</li>
+</ol>
+<ul>
+<li>Leave the dark wire loose for now.</li>
+</ul>
+<hr>
+<h3>Step 3: Connecting to the Module 🔵</h3>
+<ol>
+<li>Plug the female connector from the battery's positive wire into the +5V (VCC) pin on the blue module.</li>
+<li>Plug the female connector from the LED's positive wire (with resistor) into the D0 pin on the module.</li>
+</ol>
+<hr>
+<h3>Step 4: Joining the Negative Wires ⚡</h3>
+<p>At this point you should have two loose dark wires (one from the LED, one from the battery).</p>
+<ol>
+<li>Hold the stripped ends of both wires together.</li>
+<li>Twist them firmly with your fingers to form a single, thicker wire.</li>
+<li>Crimp that doubled end into a single female terminal.</li>
+<li>Plug that connector into the GND pin on the blue module.</li>
+</ol>
+<hr>
+<h3>Step 5: Testing and Calibration 🔧</h3>
+<ol>
+<li>With everything connected, the circuit is already live.</li>
+<li>Cover the module's sensor with your finger to simulate darkness.</li>
+<li>Use a small flathead screwdriver to turn the orange trimmer potentiometer in the center of the module.</li>
+<li>Adjust it until the LED turns on when the sensor is covered and turns off when it's uncovered.</li>
+</ol>
+<p>🌸 All done! The circuit is calibrated and ready to light up your special project.</p></section><section class="project-document" id="doc-materials"><div class="document-label">Materials</div><h3>🛠️ Bill of Materials</h3>
+<p>To build this project, you will need the following components:</p>
+<ul>
+<li><strong>1x Light Sensor Module (LDR)</strong></li>
+<li><strong>1x Coin Cell Battery (3V):</strong> Standard model, such as a CR2032.</li>
+<li><strong>1x LED:</strong> To change the color, make sure to verify the correct resistor value.</li>
+<li><strong>1x Resistor:</strong> Can range from 220Ω to 470Ω depending on the chosen LED color.</li>
+<li><strong>Jumper Wires:</strong> For the connections, don't worry about matching the exact colors in the diagram. Just follow the standard practice: use darker wires for negative and lighter wires for positive.</li>
+</ul>
+<hr></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../../en/#projects">← Explore other projects</a></footer>
+</body>
+</html>
