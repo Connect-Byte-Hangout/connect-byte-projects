@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#6f4acb">
+    <meta name="description" content="Projetos de tecnologia criativa da comunidade Connect Byte para você montar em casa.">
+    <title>Projetos Connect Byte</title>
+    <link rel="icon" href="banner.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body data-projects="projects.json">
+    <a class="skip-link" href="#projetos">Pular para os projetos</a>
+
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Connect Byte, início">
+        <img class="official-logo" src="assets/connect-byte-logo-horizontal.png" alt="Connect Byte">
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#projetos">Projetos</a>
+        <a href="platformio/">Começar a programar</a>
+        <a class="nav-cta" href="https://connect-byte.org">Inscreva-se na comunidade</a>
+        <span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow">Feito por mulheres, para todo mundo criar</p>
+          <h1>Tecnologia que sai da tela e ganha vida</h1>
+          <p class="hero-text">Explore projetos reais dos encontros da Connect Byte, escolha o seu favorito e monte em casa, no seu ritmo.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projetos">Explorar projetos</a>
+            <a class="button secondary" href="platformio/">Guia do PlatformIO</a>
+          </div>
+          <dl class="hero-stats" aria-label="Resumo da coleção">
+            <div><dt id="project-count">10</dt><dd>projetos</dd></div>
+            <div><dt id="firmware-count">6</dt><dd>com programação</dd></div>
+            <div><dt>100%</dt><dd>mão na massa</dd></div>
+          </dl>
+        </div>
+        <div class="hero-visual">
+          <img src="banner.png" alt="Projetos e participantes dos encontros da Connect Byte">
+          <span class="spark spark-one" aria-hidden="true">✦</span>
+          <span class="spark spark-two" aria-hidden="true">✦</span>
+        </div>
+      </section>
+
+      <section class="projects-section" id="projetos">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Escolha sua próxima criação</p>
+            <h2>Projetos para montar em casa</h2>
+          </div>
+          <p>Comece por uma ideia que combina com você. Todos os projetos têm materiais e instruções abertas.</p>
+        </div>
+
+        <div class="project-tools" aria-label="Buscar e filtrar projetos">
+          <label class="search-field">
+            <span class="sr-only">Buscar projeto</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="project-search" type="search" placeholder="Buscar por nome…" autocomplete="off">
+          </label>
+          <div class="filters" role="group" aria-label="Filtrar por tipo">
+            <button class="filter active" type="button" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="filter" type="button" data-filter="firmware" aria-pressed="false">Com programação</button>
+            <button class="filter" type="button" data-filter="no-firmware" aria-pressed="false">Sem firmware disponível</button>
+          </div>
+        </div>
+
+        <div class="project-grid" id="project-grid" aria-live="polite">
+          <p class="loading">Carregando projetos…</p>
+        </div>
+        <p class="empty-state" id="empty-state" hidden>Nenhum projeto encontrado. Tente outra busca.</p>
+      </section>
+
+      <section class="how-it-works">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Do primeiro clique ao projeto pronto</p>
+            <h2>Como começar</h2>
+          </div>
+        </div>
+        <ol class="steps">
+          <li><span>1</span><div><h3>Escolha</h3><p>Encontre uma ideia que desperte sua curiosidade.</p></div></li>
+          <li><span>2</span><div><h3>Separe</h3><p>Confira a lista de materiais antes de começar.</p></div></li>
+          <li><span>3</span><div><h3>Monte</h3><p>Siga as instruções com calma e experimente.</p></div></li>
+          <li><span>4</span><div><h3>Transforme</h3><p>Personalize, teste e crie sua própria versão.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="community-callout">
+        <div>
+          <p class="eyebrow">Você não precisa saber tudo para começar</p>
+          <h2>Curiosidade já é o primeiro componente.</h2>
+          <p>A Connect Byte cria espaços acolhedores para mulheres aprenderem tecnologia construindo juntas.</p>
+        </div>
+        <a class="button light" href="https://connect-byte.org">Inscreva-se na comunidade</a>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#inicio"><img class="official-logo" src="assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+      <p>Projetos abertos para aprender, montar e transformar.</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/connectbyte_">Instagram</a>
+        <a href="https://www.linkedin.com/company/connect-byte/">LinkedIn</a>
+        <a href="https://github.com/Connect-Byte-Hangout/connect-byte-projects">GitHub</a>
+      </div>
+    </footer>
+
+    <template id="project-card-template">
+      <article class="project-card">
+        <div class="card-image-wrap">
+          <img class="card-image" alt="" loading="lazy">
+          <span class="card-badge"></span>
+        </div>
+        <div class="card-body">
+          <h3></h3>
+          <p class="card-summary"></p>
+          <a class="card-link">Ver projeto <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>

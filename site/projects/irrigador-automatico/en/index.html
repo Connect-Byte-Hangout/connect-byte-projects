@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Automatic Plant Irrigator with Arduino | Connect Byte</title>
+  <link rel="icon" href="../../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../../en/"><img class="official-logo" src="../../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Language"><a href="../">PT</a><strong>EN</strong></span><a class="back-link" href="../../../en/#projects">← All projects</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../../en/#projects">Projects /</a><span class="project-type">Firmware available</span><h1>Automatic Plant Irrigator with Arduino</h1><p>A practical home automation project where participants build a system that monitors soil moisture and irrigates plants automatically.</p><div class="hero-actions"><a class="button primary" href="#content">Start this project</a><a class="button secondary" href="../firmware/src/main.cpp">View project code</a></div></div><img src="../assets/first-girls.png" alt="Project photo Automatic Plant Irrigator with Arduino"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>In this project</strong><a href="#overview">Overview</a><a href="#doc-materials">Materials</a><a href="../firmware/src/main.cpp">View project code</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">About the project</div><p>A practical home automation project where participants build a system that monitors soil moisture and irrigates plants automatically.</p>
+<p>This project was developed during a <strong>Connect Byte</strong> hands-on workshop and introduces concepts of analog sensors and actuator control (water pumps) via relays.</p>
+<hr>
+<h3>Overview</h3>
+<p>In this project, participants build an intelligent system that detects when a plant needs water using a soil moisture sensor.</p>
+<p>The Arduino processes the sensor data and, if the soil is dry, activates a mini water pump through a relay module.</p>
+<p>This project introduces fundamental concepts such as:</p>
+<ul>
+<li>Reading analog sensors</li>
+<li>Using relay modules for external load control</li>
+<li>Conditional structures (if/else) in programming</li>
+<li>Basic process automation</li>
+</ul>
+<hr>
+<h3>Learning Objectives</h3>
+<p>Upon completing this project, participants learn:</p>
+<ul>
+<li>How to collect environmental data using sensors</li>
+<li>The difference between analog and digital signals</li>
+<li>How to isolate and control higher power circuits (pumps) using relays</li>
+<li>Sensor calibration logic within the code</li>
+</ul>
+<hr>
+<h3>Circuit</h3>
+<p>Connect the components as shown in the diagram (available in the assets folder).</p>
+<p><strong>Basic wiring:</strong></p>
+<ul>
+<li>Soil Moisture Sensor → Pin A0 (Analog)</li>
+<li>Relay Module → Pin 7 (Digital)</li>
+<li>Water Pump → Connected to the Relay output and external power source</li>
+</ul>
+<hr>
+<h3>Development Environment</h3>
+<p>This project was developed using <strong>Visual Studio Code</strong>.</p>
+<p>Tools used:</p>
+<ul>
+<li>Visual Studio Code</li>
+<li>Arduino / PlatformIO Extension</li>
+<li>Arduino Framework</li>
+</ul>
+<hr>
+<h3>Code</h3>
+<p>The example code is available in the <code>code</code> folder.</p>
+<p>Main file: <code>firmware/src/main.cpp</code></p>
+<hr>
+<h3>How it works</h3>
+<p>The Arduino constantly reads the analog value from the moisture sensor. When the soil dries out, the resistance increases, and the read value exceeds the defined limit (setpoint).</p>
+<p>Upon detecting dry soil, the Arduino sends a signal to the Relay, which "closes the switch" and turns on the water pump until the soil is moist again.</p>
+<div class="contact-card">
+<h2>Connect Byte community</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Website</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-materials"><div class="document-label">Materials</div><h3>Materials</h3>
+<ul>
+<li>Arduino Uno</li>
+<li>Sensor de umidade de solo</li>
+<li>5V Relay Module (Módulo Relé)</li>
+<li>Mini Water Pump (Mini bomba d'água)</li>
+<li>Protodboard</li>
+<li>Jumper wires</li>
+<li>USB cable</li>
+<li>Water tubing</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../../en/#projects">← Explore other projects</a></footer>
+</body>
+</html>

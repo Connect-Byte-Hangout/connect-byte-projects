@@ -1,0 +1,484 @@
+#!/usr/bin/env python3
+"""Atualiza o catálogo gerado no README.md da raiz."""
+
+import json
+import html
+import posixpath
+import re
+from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[3]
+START = "<!-- PROJECTS:START -->"
+END = "<!-- PROJECTS:END -->"
+SITE_PROJECTS = ROOT / "site" / "projects"
+
+
+def metadata(path: Path) -> dict[str, str]:
+    result = {}
+    for raw in path.read_text(encoding="utf-8-sig").splitlines():
+        if raw.strip() and not raw.lstrip().startswith("#") and ":" in raw:
+            key, value = raw.split(":", 1)
+            result[key.strip()] = value.strip().strip('"\'')
+    return result
+
+
+def summary(path: Path) -> str:
+    lines = path.read_text(encoding="utf-8-sig").splitlines()
+    found_title = False
+    paragraph = []
+    for raw in lines:
+        line = raw.strip()
+        if not found_title:
+            if line.startswith("# "):
+                found_title = True
+            continue
+        if paragraph and not line:
+            break
+        if not line or line.startswith(("#", "<", "---", "🇺🇸", "![", "[")):
+            continue
+        paragraph.append(line)
+    text = " ".join(paragraph)
+    cleaned = re.sub(r"[*_`]", "", text).replace(" — ", ": ").replace(" – ", ": ")
+    return cleaned or "Projeto prático desenvolvido pela comunidade Connect Byte."
+
+
+def local_link(target: str, source_dir: str) -> str:
+    if target.startswith(("http://", "https://", "mailto:", "#")):
+        return target
+    clean = target.removeprefix("./")
+    path, separator, fragment = clean.partition("#")
+    resolved = posixpath.normpath(posixpath.join(source_dir, path))
+    if resolved.endswith(".md"):
+        return f"#{fragment}" if separator else f"#doc-{Path(resolved).stem.lower()}"
+    return f"{resolved}#{fragment}" if separator else resolved
+
+
+def inline_markdown(text: str, source_dir: str = "") -> str:
+    text = text.replace(" — ", ": ").replace(" – ", ": ")
+    escaped = html.escape(text, quote=False)
+
+    def image(match: re.Match[str]) -> str:
+        alt, target = match.groups()
+        return f'<img src="{html.escape(local_link(target, source_dir), quote=True)}" alt="{html.escape(alt, quote=True)}" loading="lazy">'
+
+    def link(match: re.Match[str]) -> str:
+        label, target = match.groups()
+        href = html.escape(local_link(target, source_dir), quote=True)
+        external = ' target="_blank" rel="noopener"' if target.startswith(("http://", "https://")) else ""
+        return f'<a href="{href}"{external}>{label}</a>'
+
+    escaped = re.sub(r"!\[([^]]*)\]\(([^)]+)\)", image, escaped)
+    escaped = re.sub(r"\[([^]]+)\]\(([^)]+)\)", link, escaped)
+    escaped = re.sub(r"`([^`]+)`", r"<code>\1</code>", escaped)
+    escaped = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", escaped)
+    escaped = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", escaped)
+    return escaped
+
+
+def markdown_html(text: str, source_dir: str = "") -> str:
+    lines = text.replace("\r\n", "\n").splitlines()
+    output: list[str] = []
+    paragraph: list[str] = []
+    list_type: str | None = None
+    code_lines: list[str] = []
+    in_code = False
+
+    def flush_paragraph() -> None:
+        if paragraph:
+            output.append(f"<p>{inline_markdown(' '.join(paragraph), source_dir)}</p>")
+            paragraph.clear()
+
+    def close_list() -> None:
+        nonlocal list_type
+        if list_type:
+            output.append(f"</{list_type}>")
+            list_type = None
+
+    index = 0
+    while index < len(lines):
+        raw = lines[index]
+        line = raw.strip()
+        if line.startswith("```") and line.endswith("```") and len(line) > 6:
+            flush_paragraph()
+            close_list()
+            output.append(f"<pre><code>{html.escape(line[3:-3])}</code></pre>")
+            index += 1
+            continue
+        if line.startswith("```"):
+            flush_paragraph()
+            close_list()
+            if in_code:
+                output.append(f"<pre><code>{html.escape(chr(10).join(code_lines))}</code></pre>")
+                code_lines.clear()
+                in_code = False
+            else:
+                in_code = True
+            index += 1
+            continue
+        if in_code:
+            code_lines.append(raw)
+            index += 1
+            continue
+        if not line:
+            flush_paragraph()
+            close_list()
+            index += 1
+            continue
+        table_next = index + 1 < len(lines) and re.fullmatch(r"\s*\|?[\s:|-]+\|?\s*", lines[index + 1])
+        if line.startswith("|") and table_next:
+            flush_paragraph()
+            close_list()
+            headers = [cell.strip() for cell in line.strip("|").split("|")]
+            index += 2
+            rows = []
+            while index < len(lines) and lines[index].strip().startswith("|"):
+                rows.append([cell.strip() for cell in lines[index].strip().strip("|").split("|")])
+                index += 1
+            output.append("<div class=\"table-wrap\"><table><thead><tr>" + "".join(f"<th>{inline_markdown(cell, source_dir)}</th>" for cell in headers) + "</tr></thead><tbody>")
+            for row in rows:
+                output.append("<tr>" + "".join(f"<td>{inline_markdown(cell, source_dir)}</td>" for cell in row) + "</tr>")
+            output.append("</tbody></table></div>")
+            continue
+        heading = re.match(r"^(#{1,6})\s+(.+)$", line)
+        if heading:
+            flush_paragraph()
+            close_list()
+            level = min(len(heading.group(1)) + 1, 6)
+            output.append(f"<h{level}>{inline_markdown(heading.group(2), source_dir)}</h{level}>")
+        elif re.fullmatch(r"-{3,}|_{3,}|\*{3,}", line):
+            flush_paragraph()
+            close_list()
+            output.append("<hr>")
+        elif line.startswith(">"):
+            flush_paragraph()
+            close_list()
+            output.append(f"<blockquote>{inline_markdown(line.lstrip('> '), source_dir)}</blockquote>")
+        elif re.match(r"^[-*•]\s+", line):
+            flush_paragraph()
+            if list_type != "ul":
+                close_list()
+                output.append("<ul>")
+                list_type = "ul"
+            output.append(f"<li>{inline_markdown(re.sub(r'^[-*•]\s+', '', line), source_dir)}</li>")
+        elif re.match(r"^\d+\.\s+", line):
+            flush_paragraph()
+            if list_type != "ol":
+                close_list()
+                output.append("<ol>")
+                list_type = "ol"
+            output.append(f"<li>{inline_markdown(re.sub(r'^\d+\.\s+', '', line), source_dir)}</li>")
+        elif line.startswith("<"):
+            flush_paragraph()
+            close_list()
+            adjusted = re.sub(
+                r'(src|href)=["\']([^"\']+)["\']',
+                lambda match: f'{match.group(1)}="{local_link(match.group(2), source_dir)}"',
+                raw,
+            )
+            output.append(adjusted)
+        else:
+            paragraph.append(line)
+        index += 1
+    flush_paragraph()
+    close_list()
+    if in_code:
+        output.append(f"<pre><code>{html.escape(chr(10).join(code_lines))}</code></pre>")
+    return "\n".join(output)
+
+
+def readme_body(path: Path) -> str:
+    lines = path.read_text(encoding="utf-8-sig").splitlines()
+    title_index = next((index for index, line in enumerate(lines) if line.startswith("# ")), -1)
+    return "\n".join(lines[title_index + 1 :]) if title_index >= 0 else "\n".join(lines)
+
+
+def site_overview(path: Path, language: str) -> str:
+    body = readme_body(path)
+    body = re.split(r"^#{2,3}\s+Connect Byte\s*$", body, maxsplit=1, flags=re.MULTILINE)[0].rstrip()
+    title = "Connect Byte community" if language == "en" else "Comunidade Connect Byte"
+    website = "Website" if language == "en" else "Site"
+    contacts = f'''<div class="contact-card">
+<h2>{title}</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">{website}</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div>'''
+    return f"{body}\n\n{contacts}"
+
+
+def document_label(stem: str) -> str:
+    return {
+        "materials": "Lista de materiais",
+        "assembly": "Guia de montagem",
+        "wiki": "Conteúdo complementar",
+    }.get(stem, stem.replace("-", " ").title())
+
+
+def localized_document(text: str, language: str) -> str:
+    if "### 🇺🇸 Instructions" in text and "### 🇧🇷 Instruções" in text:
+        wanted = "🇧🇷" if language == "pt" else "🇺🇸"
+        result = []
+        active = True
+        for line in text.splitlines():
+            if re.match(r"^#{1,2}\s", line):
+                active = True
+                if " / " in line:
+                    left, right = line.split(" / ", 1)
+                    prefix = re.match(r"^(#+\s+(?:[^\wÀ-ÿ]+\s*)?)", left)
+                    line = left if language == "en" else (prefix.group(1) if prefix else "## ") + right
+                result.append(line)
+            elif line.startswith("### 🇺🇸") or line.startswith("### 🇧🇷"):
+                active = wanted in line
+            elif active:
+                result.append(line)
+        return "\n".join(result)
+    markers = (
+        ("# 🔌 Project Assembly Guide", "# 🔌 Guia de Montagem"),
+        ("# 🔌 Assembly Guide", "# 🔌 Guia de Montagem"),
+        ("## 🛠️ Bill of Materials", "## 🛠️ Lista de Materiais"),
+    )
+    for english_marker, portuguese_marker in markers:
+        if english_marker in text and portuguese_marker in text:
+            if text.index(english_marker) < text.index(portuguese_marker):
+                english, portuguese = text.split(portuguese_marker, 1)
+                return (english if language == "en" else portuguese_marker + portuguese).strip()
+            portuguese, english = text.split(english_marker, 1)
+            return (english_marker + english if language == "en" else portuguese).strip()
+    portuguese_terms = r"Chaves|Resistores|Motores|Suporte|pilhas|Bomba|Mangueira|Caixa|Fios|Teclado|Protoboard"
+    lines = []
+    for line in text.splitlines():
+        match = re.match(r"^(.*?)(?:\s*)\(([^()]*(?:" + portuguese_terms + r")[^()]*)\)(.*)$", line)
+        if match:
+            if language == "pt":
+                quantity = re.match(r"^([-*•]\s+)?(\d+x?\s+)?", match.group(1))
+                line = f"{quantity.group(0) if quantity else ''}{match.group(2)}{match.group(3)}"
+            else:
+                line = f"{match.group(1)}{match.group(3)}"
+        lines.append(line)
+    localized = "\n".join(lines)
+    if language == "pt":
+        translations = {
+            "Arduino Uno (or compatible)": "Arduino Uno (ou compatível)",
+            "LEDs (various colors)": "LEDs (várias cores)",
+            "Jumper wires": "Fios jumper",
+            "USB cable": "Cabo USB",
+            "Breadboard": "Protoboard",
+            "Push-button": "Botão",
+            "Coin Battery": "Bateria tipo moeda",
+            "Piezo Buzzer": "Buzzer piezoelétrico",
+            "Sound sensor": "Sensor de som",
+            "Battery holder & batteries": "Suporte de pilhas e pilhas",
+            "Picture frame": "Porta-retrato",
+            "Vibration motor": "Motor vibratório",
+        }
+        for original, translated in translations.items():
+            localized = localized.replace(original, translated)
+    return localized
+
+
+def readme_title(path: Path) -> str:
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
+        if line.startswith("# "):
+            return re.sub(r"^[^\wÀ-ÿ]+", "", line[2:]).strip()
+    return path.parent.name
+
+
+def prefix_local_links(rendered: str, prefix: str) -> str:
+    if not prefix:
+        return rendered
+    return re.sub(
+        r'(src|href)="(?!https?://|mailto:|#)([^"]+)"',
+        lambda match: f'{match.group(1)}="{prefix}{match.group(2)}"',
+        rendered,
+    )
+
+
+def project_page(project: Path, data: dict[str, str], language: str = "pt") -> str:
+    english = language == "en"
+    readme = project / ("README.en.md" if english else "README.md")
+    name = readme_title(readme) if english else data.get("name", project.name)
+    cover = data.get("cover", "")
+    has_firmware = data.get("has_firmware") == "true"
+    prefix = "../" if english else ""
+    root_prefix = "../../../" if english else "../../"
+    docs = sorted((project / "docs").glob("*.md")) if (project / "docs").is_dir() else []
+    if english:
+        docs = [document for document in docs if document.stem != "wiki"]
+    labels_en = {"materials": "Materials", "assembly": "Assembly guide", "wiki": "Learn more"}
+    documents = []
+    for document in docs:
+        label = labels_en.get(document.stem, document_label(document.stem)) if english else document_label(document.stem)
+        source = localized_document(document.read_text(encoding="utf-8-sig"), language)
+        if not english and document.stem == "materials":
+            source = re.sub(r"^(#{1,3})\s+Materials\s*$", r"\1 Lista de materiais", source, flags=re.MULTILINE)
+        rendered = prefix_local_links(markdown_html(source, "docs"), prefix)
+        documents.append(f'<section class="project-document" id="doc-{document.stem.lower()}"><div class="document-label">{label}</div>{rendered}</section>')
+    copy = {
+        "back": "All projects" if english else "Todos os projetos",
+        "projects": "Projects" if english else "Projetos",
+        "available": "Firmware available" if english else "Firmware disponível",
+        "unavailable": "No firmware available" if english else "Sem firmware disponível",
+        "start": "Start this project" if english else "Começar o projeto",
+        "code": "View project code" if english else "Ver código do projeto",
+        "inside": "In this project" if english else "Neste projeto",
+        "overview": "Overview" if english else "Visão geral",
+        "about": "About the project" if english else "Sobre o projeto",
+        "explore": "Explore other projects" if english else "Explorar outros projetos",
+        "photo": "Project photo" if english else "Foto do projeto",
+    }
+    home = f"{root_prefix}{'en/' if english else ''}#projects" if english else f"{root_prefix}#projetos"
+    other_language = "../" if english else "en/"
+    firmware_path = f"{prefix}firmware/src/main.cpp"
+    firmware_button = f'<a class="button secondary" href="{firmware_path}">{copy["code"]}</a>' if has_firmware else ""
+    nav_docs = "".join(
+        f'<a href="#doc-{doc.stem.lower()}">{labels_en.get(doc.stem, document_label(doc.stem)) if english else document_label(doc.stem)}</a>'
+        for doc in docs
+    )
+    overview = prefix_local_links(markdown_html(site_overview(readme, language)), prefix)
+    return f'''<!doctype html>
+<html lang="{'en' if english else 'pt-BR'}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>{html.escape(name)} | Connect Byte</title>
+  <link rel="icon" href="{root_prefix}banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{root_prefix}styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="{root_prefix}{'en/' if english else ''}"><img class="official-logo" src="{root_prefix}assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="{'Language' if english else 'Idioma'}">{'<a href="../">PT</a><strong>EN</strong>' if english else '<strong>PT</strong><a href="en/">EN</a>'}</span><a class="back-link" href="{home}">← {copy['back']}</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="{home}">{copy['projects']} /</a><span class="project-type">{copy['available'] if has_firmware else copy['unavailable']}</span><h1>{html.escape(name)}</h1><p>{html.escape(summary(readme))}</p><div class="hero-actions"><a class="button primary" href="#content">{copy['start']}</a>{firmware_button}</div></div><img src="{prefix}{html.escape(cover, quote=True)}" alt="{copy['photo']} {html.escape(name, quote=True)}"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>{copy['inside']}</strong><a href="#overview">{copy['overview']}</a>{nav_docs}{f'<a href="{firmware_path}">{copy["code"]}</a>' if has_firmware else ''}</aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">{copy['about']}</div>{overview}</section>{''.join(documents)}</article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="{home}">← {copy['explore']}</a></footer>
+</body>
+</html>'''
+
+
+def guide_page(language: str = "pt") -> str:
+    english = language == "en"
+    source = ROOT / "docs" / ("platformio.en.md" if english else "platformio.md")
+    title = readme_title(source)
+    content = markdown_html(readme_body(source))
+    root_prefix = "../../" if english else "../"
+    home = f"{root_prefix}{'en/' if english else ''}"
+    projects_anchor = "projects" if english else "projetos"
+    switch = '<a href="../">PT</a><strong>EN</strong>' if english else '<strong>PT</strong><a href="en/">EN</a>'
+    copy = {
+        "back": "All projects" if english else "Todos os projetos",
+        "label": "Programming guide" if english else "Guia de programação",
+    }
+    return f'''<!doctype html>
+<html lang="{'en' if english else 'pt-BR'}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>{html.escape(title)} | Connect Byte</title>
+  <link rel="icon" href="{root_prefix}banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{root_prefix}styles.css">
+</head>
+<body class="project-page guide-page">
+  <header class="site-header project-header">
+    <a class="brand" href="{home}"><img class="official-logo" src="{root_prefix}assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="{'Language' if english else 'Idioma'}">{switch}</span><a class="back-link" href="{home}#{projects_anchor}">← {copy['back']}</a></div>
+  </header>
+  <main class="guide-main">
+    <article class="project-document guide-document"><div class="document-label">{copy['label']}</div><h1>{html.escape(title)}</h1>{content}</article>
+  </main>
+  <footer class="project-footer"><a href="{home}#{projects_anchor}">← {copy['back']}</a></footer>
+</body>
+</html>'''
+
+
+def main() -> int:
+    readme = ROOT / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    if START not in text or END not in text:
+        print("README.md não contém os marcadores do catálogo.", file=sys.stderr)
+        return 1
+    rows = []
+    site_projects = []
+    site_projects_en = []
+    for project in sorted((ROOT / "projects").iterdir()):
+        if not project.is_dir() or not (project / "project.yml").is_file():
+            continue
+        data = metadata(project / "project.yml")
+        name = data.get("name", project.name)
+        page_dir = SITE_PROJECTS / project.name
+        page_dir.mkdir(parents=True, exist_ok=True)
+        for language, destination in (("pt", page_dir / "index.html"), ("en", page_dir / "en" / "index.html")):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            page = project_page(project, data, language)
+            page = "\n".join(line.rstrip() for line in page.splitlines()) + "\n"
+            destination.write_text(page, encoding="utf-8")
+        if data.get("status") != "published":
+            continue
+        firmware = "Sim" if data.get("has_firmware") == "true" else "Não"
+        rows.append(
+            f"| [{name}](projects/{project.name}/README.md) | {firmware} |"
+        )
+        site_projects.append(
+            {
+                "name": name,
+                "slug": project.name,
+                "summary": summary(project / "README.md"),
+                "has_firmware": data.get("has_firmware") == "true",
+                "cover": f"projects/{project.name}/{data.get('cover')}",
+                "url": f"projects/{project.name}/",
+            }
+        )
+        site_projects_en.append(
+            {
+                "name": readme_title(project / "README.en.md"),
+                "slug": project.name,
+                "summary": summary(project / "README.en.md"),
+                "has_firmware": data.get("has_firmware") == "true",
+                "cover": f"../projects/{project.name}/{data.get('cover')}",
+                "url": f"../projects/{project.name}/en/",
+            }
+        )
+    catalog = "\n".join(
+        [
+            START,
+            "| Projeto | Firmware |",
+            "| --- | :---: |",
+            *rows,
+            END,
+        ]
+    )
+    before, remainder = text.split(START, 1)
+    _, after = remainder.split(END, 1)
+    readme.write_text(before + catalog + after, encoding="utf-8")
+    site_data = ROOT / "site" / "projects.json"
+    site_data.write_text(
+        json.dumps(site_projects, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    (ROOT / "site" / "projects.en.json").write_text(
+        json.dumps(site_projects_en, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    for language, destination in (
+        ("pt", ROOT / "site" / "platformio" / "index.html"),
+        ("en", ROOT / "site" / "platformio" / "en" / "index.html"),
+    ):
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        page = guide_page(language)
+        destination.write_text("\n".join(line.rstrip() for line in page.splitlines()) + "\n", encoding="utf-8")
+    print(f"Catálogo atualizado com {len(rows)} projeto(s).")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

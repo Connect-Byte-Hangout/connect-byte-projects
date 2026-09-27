@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Planner Financeiro Físico | Connect Byte</title>
+  <link rel="icon" href="../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../"><img class="official-logo" src="../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Planner Financeiro Físico</h1><p>Um planner que conecta organização financeira no papel, reconhecimento de dados no site da Connect Byte e acompanhamento da meta em um dispositivo físico com ESP32-C3 e display OLED.</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="assets/financial-planner-example.jpeg" alt="Foto do projeto Planner Financeiro Físico"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-assembly">Guia de montagem</a><a href="#doc-materials">Lista de materiais</a><a href="firmware/src/main.cpp">Ver código do projeto</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Um planner que conecta organização financeira no papel, reconhecimento de dados no site da Connect Byte e acompanhamento da meta em um dispositivo físico com ESP32-C3 e display OLED.</p>
+<p>As participantes preenchem manualmente a folha semanal, fotografam o planner e enviam a imagem pela área da comunidade no site da Connect Byte. Depois de revisar os campos reconhecidos, os dados ficam disponíveis para o dispositivo. Ao pressionar o botão <strong>BOOT</strong> do ESP32, o display mostra quanto já foi guardado, o valor da meta e o progresso alcançado.</p>
+<blockquote>A etapa digital acontece no <a href="https://www.connect-byte.org/planner" target="_blank" rel="noopener">Planner da área da comunidade Connect Byte</a> e está disponível somente para integrantes que tenham acesso. Essa funcionalidade não faz parte deste repositório público.</blockquote>
+<h3>Como o projeto funciona</h3>
+<ol>
+<li>Preencha a <a href="assets/financial-planner-sheet.pdf">folha do planner financeiro</a> à mão.</li>
+<li>Tire uma foto da folha preenchida ou escolha preencher os campos manualmente no site.</li>
+<li>Entre no <a href="https://www.connect-byte.org/planner" target="_blank" rel="noopener">Planner da área da comunidade Connect Byte</a>.</li>
+<li>Se enviar uma foto, confira os campos reconhecidos e corrija qualquer informação, se necessário.</li>
+<li>Salve a meta e os valores atualizados.</li>
+<li>Pressione rapidamente o botão <strong>BOOT</strong> no ESP32 para atualizar o display.</li>
+</ol>
+<p>Um pressionamento longo de aproximadamente cinco segundos abre o portal de configuração do Wi-Fi. Consulte o <a href="#configuracao-do-wi-fi">passo a passo para configurar a rede em casa.</a></p>
+<h3>Materiais e montagem</h3>
+<ul>
+<li><a href="#doc-materials">Lista de materiais</a></li>
+<li><a href="#doc-assembly">Guia de montagem e configuração</a></li>
+<li><a href="assets/financial-planner-sheet.pdf">Folha do planner para impressão</a></li>
+</ul>
+<h3>Firmware</h3>
+<p>O firmware usa PlatformIO e está em <a href="firmware"><code>firmware/</code></a>. Ele está configurado para a placa ESP32-C3 Super Mini e aceita displays OLED de 128 x 32 ou 128 x 64 pixels. O portal de configuração cria a rede <code>ConnectByte-Planner</code> com a senha <code>12345678</code>, mantendo compatibilidade com as unidades entregues no evento.</p>
+<p>O identificador e o token do dispositivo não ficam no código público. Eles vinculam cada Planner à conta da participante no site da Connect Byte, são configurados pelas administradoras e ficam armazenados na memória do ESP32. Somente as administradoras têm acesso a essa etapa de vinculação.</p>
+<div class="contact-card">
+<h2>Comunidade Connect Byte</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Site</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-assembly"><div class="document-label">Guia de montagem</div><h2>🔌 Guia de Montagem</h2>
+<h3>Antes de começar</h3>
+<p>O firmware recebido está configurado para um ESP32-C3, display OLED I2C no endereço <code>0x3C</code> e resolução padrão de 128 x 64 pixels. Ele também oferece suporte a um display de 128 x 32 pixels por meio da configuração <code>OLED_128X32</code> no código.</p>
+<blockquote>Confira a tensão, a polaridade e o modelo de cada componente antes de conectar a bateria.</blockquote>
+<h3>1. Prepare o planner de papel</h3>
+<ol>
+<li>Imprima a <a href="assets/financial-planner-sheet.pdf">folha do planner</a>.</li>
+<li>Preencha a semana, os valores planejados e gastos por categoria.</li>
+<li>Preencha quanto você tem para a semana, quanto prometeu guardar e quanto guardou de verdade.</li>
+<li>Registre sua meta e as observações da semana.</li>
+</ol>
+<p>Também é possível preencher todos os campos manualmente no <a href="https://www.connect-byte.org/planner" target="_blank" rel="noopener">Planner da área da comunidade Connect Byte</a>, sem tirar ou enviar uma foto.</p>
+<h3>2. Monte o dispositivo</h3>
+<p>Conecte o display OLED ao ESP32-C3 usando a interface I2C. No firmware recebido, os pinos estão configurados desta forma:</p>
+<div class="table-wrap"><table><thead><tr><th>Função</th><th>Pino configurado</th></tr></thead><tbody>
+<tr><td>SDA do display</td><td>GPIO 4</td></tr>
+<tr><td>SCL do display</td><td>GPIO 3</td></tr>
+<tr><td>Botão BOOT</td><td>Integrado na Placa</td></tr>
+<tr><td>LED de status avulso e opcional</td><td>GPIO 5</td></tr>
+</tbody></table></div>
+<p>As participantes não implementaram o LED de status durante o evento. Porém, o código está preparado para receber um LED de feedback no pino GPIO 5 como uma melhoria opcional. Confira a polaridade antes de conectar o suporte para quatro pilhas AA.</p>
+<h4>Desafio de melhoria opcional: LED de status</h4>
+<p>Como próximo passo, adicione um LED com um resistor adequado no GPIO 5. O firmware já usa essa saída para indicar atividade, sucesso e erros. Esse desafio não fez parte da montagem realizada no evento.</p>
+<h3>3. Prepare o firmware</h3>
+<ol>
+<li>Instale o VS Code e o PlatformIO seguindo o <a href="#doc-platformio">guia do repositório</a>.</li>
+<li>Abra a pasta <code>firmware/</code> no VS Code.</li>
+<li>Compile e envie o firmware para a placa.</li>
+</ol>
+<h3>4. Configure o dispositivo</h3>
+<p>Na primeira inicialização, abra o monitor serial em <code>115200</code>. O firmware pedirá:</p>
+<ul>
+<li>o identificador do dispositivo;</li>
+<li>o token privado do dispositivo.</li>
+</ul>
+<p>As administradoras usam esses dados para vincular o Planner físico à conta da participante no site da Connect Byte. Eles são armazenados na memória NVS do ESP32 e o token não é exibido novamente no monitor serial. Somente as administradoras têm acesso a essa etapa de vinculação.</p>
+<blockquote>O identificador e o token devem ser obtidos somente pelo fluxo autorizado da Connect Byte. Não compartilhe o token nem o coloque em arquivos deste repositório.</blockquote>
+<h3>5. Use a área da comunidade</h3>
+<ol>
+<li>Acesse o <a href="https://www.connect-byte.org/planner" target="_blank" rel="noopener">Planner da área da comunidade Connect Byte</a>.</li>
+<li>Entre com uma conta que tenha acesso à área da comunidade.</li>
+<li>Abra a funcionalidade do planner financeiro.</li>
+<li>Envie uma foto nítida da folha preenchida ou preencha o formulário manualmente, sem enviar uma foto.</li>
+<li>Se enviar uma foto, revise os campos reconhecidos e corrija qualquer erro.</li>
+<li>Salve os dados.</li>
+</ol>
+<p>A ferramenta de reconhecimento pertence ao site da Connect Byte e não está incluída neste repositório público. Caso a funcionalidade não apareça para sua conta, solicite acesso à equipe da comunidade.</p>
+<span id="configuracao-do-wi-fi"></span>
+<h3>Configuração do Wi-Fi</h3>
+<p>O Connect Byte Planner permite trocar ou configurar a rede Wi-Fi sem precisar conectar o ESP32 ao computador.</p>
+<ol>
+<li>Ligue o Planner normalmente.</li>
+<li>Pressione e mantenha pressionado o botão <strong>BOOT</strong> do ESP32-C3 Super Mini por aproximadamente cinco segundos.</li>
+<li>Após os cinco segundos, o Planner entra no modo de configuração de Wi-Fi.</li>
+<li>O display OLED mostra <code>Configurar Wi-Fi</code> e <code>ConnectByte-Planner</code>.</li>
+<li>O ESP32-C3 cria temporariamente um ponto de acesso Wi-Fi chamado <code>ConnectByte-Planner</code>.</li>
+<li>No celular ou computador, abra as configurações de Wi-Fi e conecte-se à rede <code>ConnectByte-Planner</code> usando a senha <code>12345678</code>.</li>
+<li>Após conectar-se à rede do Planner, o portal de configuração do WiFiManager deve ser apresentado.</li>
+<li>No portal, selecione <strong>Configurar WiFi</strong> e aguarde as redes disponíveis aparecerem. Essa etapa é lenta mesmo: espere um pouco enquanto o portal muda de tela e conclui a busca.</li>
+<li>Selecione a rede Wi-Fi que o Planner deverá utilizar normalmente, informe a senha dessa rede e confirme a configuração.</li>
+<li>Após a conexão ser concluída com sucesso, o ESP32 salva as credenciais de Wi-Fi para as próximas inicializações.</li>
+<li>O OLED informa que o Wi-Fi foi conectado.</li>
+<li>Em seguida, o Planner consulta automaticamente o backend e atualiza no display os dados de progresso financeiro.</li>
+</ol>
+<p>O portal de configuração permanece disponível por até 300 segundos, ou cinco minutos. Se a configuração não for concluída nesse período, o portal é encerrado.</p>
+<h4>Usos do botão BOOT</h4>
+<ul>
+<li><strong>Pressionamento curto:</strong> solicita imediatamente uma atualização dos dados do Planner através da API.</li>
+<li><strong>Pressionamento longo, por aproximadamente cinco segundos:</strong> abre o portal de configuração do Wi-Fi.</li>
+</ul>
+<h4>Detalhe técnico do ESP32-C3 Super Mini</h4>
+<p>Antes de iniciar o ponto de acesso, o firmware configura a potência de transmissão Wi-Fi com:</p>
+<pre><code>WiFi.setTxPower(WIFI_POWER_8_5dBm);</code></pre>
+<p>Essa configuração faz parte da implementação utilizada no projeto para garantir o funcionamento e a visibilidade do ponto de acesso no ESP32-C3 Super Mini. O botão BOOT utilizado pelo firmware está no GPIO 9.</p>
+<p>Pelo monitor serial, também estão disponíveis os comandos <code>INFO</code>, <code>UPDATE</code> e <code>RESET_DEVICE</code>.</p></section><section class="project-document" id="doc-materials"><div class="document-label">Lista de materiais</div><h3>🛠️ Lista de Materiais</h3>
+<ul>
+<li>1 placa ESP32-C3 Super Mini</li>
+<li>1 display OLED I2C de 128 x 32 ou 128 x 64 pixels</li>
+<li>1 suporte para 4 pilhas AA</li>
+<li>4 pilhas AA</li>
+<li>1 cabo USB de dados para programação e configuração inicial</li>
+<li>Fios para as conexões entre a placa, o display e a alimentação</li>
+<li>Desafio opcional: 1 LED de status avulso e um resistor adequado</li>
+<li>1 folha impressa do planner financeiro</li>
+</ul>
+<blockquote><strong>TODO:</strong> esquema elétrico final em breve.</blockquote></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../#projetos">← Explorar outros projetos</a></footer>
+</body>
+</html>

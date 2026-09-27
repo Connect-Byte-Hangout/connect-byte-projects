@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Telas Iluminadas de Dia das Mães",
+    "slug": "canvas-led",
+    "summary": "Um projeto especial onde as participantes constroem quadros decorativos que ganham vida no escuro, combinando arte manual e eletrônica de forma leve e afetiva 💝",
+    "has_firmware": false,
+    "cover": "projects/canvas-led/assets/encontro-maio-3.jpg",
+    "url": "projects/canvas-led/"
+  },
+  {
+    "name": "Missão Catapulta",
+    "slug": "catapult-halloween-arduino",
+    "summary": "Um projeto prático de engenharia básica e raciocínio onde as participantes constroem uma catapulta funcional através da resolução de desafios.",
+    "has_firmware": false,
+    "cover": "projects/catapult-halloween-arduino/assets/catapult.png",
+    "url": "projects/catapult-halloween-arduino/"
+  },
+  {
+    "name": "Byte do Milhão",
+    "slug": "esp-control",
+    "summary": "Game show em tempo real da comunidade Connect Byte: Encontro de Junho (FIAP + MagaluCloud).",
+    "has_firmware": true,
+    "cover": "projects/esp-control/assets/project-jun.jpg",
+    "url": "projects/esp-control/"
+  },
+  {
+    "name": "Carro Alegórico Robótico com Arduino",
+    "slug": "float-car-arduino",
+    "summary": "Um projeto criativo de robótica onde as participantes constroem um carro alegórico autônomo utilizando Arduino.",
+    "has_firmware": true,
+    "cover": "projects/float-car-arduino/assets/carnaval-1.jpg",
+    "url": "projects/float-car-arduino/"
+  },
+  {
+    "name": "Irrigador Automático com Arduino",
+    "slug": "irrigador-automatico",
+    "summary": "Um projeto prático de automação residencial onde as participantes constroem um sistema que monitora a umidade do solo e irriga plantas automaticamente.",
+    "has_firmware": true,
+    "cover": "projects/irrigador-automatico/assets/first-girls.png",
+    "url": "projects/irrigador-automatico/"
+  },
+  {
+    "name": "Luminária LED com Arduino",
+    "slug": "lamp-led-arduino",
+    "summary": "Um projeto simples de eletrônica criativa onde as participantes constroem uma pequena luminária utilizando Arduino.",
+    "has_firmware": true,
+    "cover": "projects/lamp-led-arduino/assets/lamp-3.jpg",
+    "url": "projects/lamp-led-arduino/"
+  },
+  {
+    "name": "Melodia Mecânica",
+    "slug": "mechanical-melody",
+    "summary": "Um projeto de eletrônica criativa onde as participantes constroem uma caixa de som interativa usando um Arduino, um teclado de membrana e um buzzer.",
+    "has_firmware": false,
+    "cover": "projects/mechanical-melody/assets/soundbox-2.png",
+    "url": "projects/mechanical-melody/"
+  },
+  {
+    "name": "Planner Financeiro Físico",
+    "slug": "physical-financial-planner",
+    "summary": "Um planner que conecta organização financeira no papel, reconhecimento de dados no site da Connect Byte e acompanhamento da meta em um dispositivo físico com ESP32-C3 e display OLED.",
+    "has_firmware": true,
+    "cover": "projects/physical-financial-planner/assets/financial-planner-example.jpeg",
+    "url": "projects/physical-financial-planner/"
+  },
+  {
+    "name": "Planner Interativo com LEDs",
+    "slug": "planner-led",
+    "summary": "Um projeto prático de eletrônica onde as participantes constroem um rastreador de hábitos ou planner diário interativo dentro de um porta-retrato.",
+    "has_firmware": false,
+    "cover": "projects/planner-led/assets/planner-1.jpg",
+    "url": "projects/planner-led/"
+  },
+  {
+    "name": "Tamagotchi Físico de Páscoa",
+    "slug": "tamagotchi-pascoa",
+    "summary": "Um projeto de eletrônica criativa onde as participantes constroem um objeto interativo com tema de Páscoa, misturando arte, narrativa e hardware de forma leve e divertida ✨",
+    "has_firmware": true,
+    "cover": "projects/tamagotchi-pascoa/assets/pascoa-1.jpg",
+    "url": "projects/tamagotchi-pascoa/"
+  },
+  {
+    "name": "Televisão RGB com Arduino",
+    "slug": "tv-led-arduino",
+    "summary": "Um projeto de eletrônica criativa onde as participantes constroem uma mini televisão de papelão com iluminação RGB interativa controlada por um Arduino e um botão.",
+    "has_firmware": true,
+    "cover": "projects/tv-led-arduino/assets/tv-3.jpeg",
+    "url": "projects/tv-led-arduino/"
+  }
+]

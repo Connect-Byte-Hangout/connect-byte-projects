@@ -1,0 +1,25 @@
+name: Validar projetos
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v6
+
+      - name: Validar estrutura e conteúdo
+        run: .github/maintenance/scripts/validate-projects
+
+      - name: Atualizar catálogo e páginas
+        run: .github/maintenance/scripts/generate-catalog
+
+      - name: Confirmar arquivos gerados
+        run: git diff --exit-code

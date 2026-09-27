@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Planner Interativo com LEDs | Connect Byte</title>
+  <link rel="icon" href="../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../"><img class="official-logo" src="../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Sem firmware disponível</span><h1>Planner Interativo com LEDs</h1><p>Um projeto prático de eletrônica onde as participantes constroem um rastreador de hábitos ou planner diário interativo dentro de um porta-retrato.</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a></div></div><img src="assets/planner-1.jpg" alt="Foto do projeto Planner Interativo com LEDs"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-assembly">Guia de montagem</a><a href="#doc-materials">Lista de materiais</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Um projeto prático de eletrônica onde as participantes constroem um rastreador de hábitos ou planner diário interativo dentro de um porta-retrato.</p>
+<p>Este projeto foi desenvolvido durante um encontro da Connect Byte e introduz interação física e lógica básica de circuitos de forma criativa.</p>
+<hr>
+<h3>🎨 Visão Geral do Projeto</h3>
+<p>Neste projeto, as participantes utilizam um porta-retrato para criar um "quadro de missões" ou rastreador de hábitos visual. Cada tarefa está ligada a um interruptor físico e a uma saída (como um LED ou um motor de vibração).</p>
+<p>Quando uma tarefa é concluída, virar a chave ativa o circuito, proporcionando um feedback visual e físico satisfatório de realização.</p>
+<p>Este projeto foi pensado para ser modular, permitindo que as participantes escolham seu nível de complexidade:</p>
+<p><strong>🌱 Nível 1: Básico:</strong> Um circuito simples usando chaves gangorra e LEDs. Concluir uma tarefa acende sua luz correspondente.</p>
+<p><strong>⚡ Nível 2: Intermediário:</strong> Um circuito aprimorado com múltiplas chaves, LEDs e um motor vibratório. A "tarefa principal" aciona simultaneamente uma luz e uma vibração háptica quando concluída.</p>
+<hr>
+<h3>🧩 Como Vamos Integrar Arte e Eletrônica</h3>
+<p>Para garantir uma integração perfeita entre o design do planner e o hardware, este projeto apresenta conceitos fundamentais como:</p>
+<ol>
+<li><em>Eletrônica Básica:</em> Compreensão de Tensão, Corrente, GND e malhas de circuitos.</li>
+<li><em>Controle de Componentes:</em> Entender como os interruptores funcionam como comportas para a corrente e como os resistores protegem os circuitos.</li>
+<li><em>Circuitos em Paralelo:</em> Como criar caminhos independentes para que chaves diferentes controlem tarefas separadas, ou como uma única chave pode acionar dois elementos ao mesmo tempo (LED + Motor).</li>
+</ol>
+<hr>
+<h3>🛠️ Resumo Técnico para a Montagem (Hardware)</h3>
+<p>Os circuitos são projetos de hardware independentes alimentados por pilhas, dispensando o uso de microcontroladores ou programação.</p>
+<ul>
+<li><strong>Passo-a-passo:</strong> Confira as instruções de montagem no guia de <a href="#doc-assembly">montagem</a>. Para visualizar o circuito, veja os diagramas do <a href="hardware/diagram-basic.png">Projeto Básico</a> e do <a href="hardware/diagram-medium.png">Projeto Intermediário</a>.</li>
+</ul>
+<ul>
+<li><strong>Workshop:</strong> Em breve em nosso encontro online "Debug sem Pressão".</li>
+</ul>
+<hr>
+<div class="contact-card">
+<h2>Comunidade Connect Byte</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Site</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-assembly"><div class="document-label">Guia de montagem</div><h2>🛠️ Guia de Montagem: Planner LED</h2>
+<p>This guide provides step-by-step instructions for assembling both levels of the Interactive LED Planner. / Este guia fornece instruções passo a passo para a montagem de ambos os níveis do Planner Interativo.</p>
+<hr>
+<h3>🌱 Nível 1: Circuito Básico</h3>
+<ol>
+<li><strong>Prepare o LED:</strong> Identifique a perna mais longa (Ânodo, +) e a perna mais curta (Cátodo, -) do seu LED.</li>
+<li><strong>Conecte a Chave:</strong> Conecte o terminal positivo (+) do suporte de pilhas a um dos pinos da chave gangorra.</li>
+<li><strong>Adicione Proteção:</strong> Do outro pino da chave, conecte um resistor de 220Ω à perna mais longa (+) do LED.</li>
+<li><strong>Feche o Circuito:</strong> Conecte a perna mais curta (-) do LED de volta ao terminal negativo (-) do suporte de pilhas.</li>
+<li>Repita esse fluxo para cada tarefa/luz individual no seu quadro!</li>
+</ol>
+<hr>
+<h3>⚡ Nível 2: Circuito Intermediário</h3>
+<p>Este circuito compartilha uma única fonte de alimentação de 2 pilhas AA (3V) distribuída em 3 trilhas paralelas.</p>
+<ul>
+<li><strong>Trilha 1 (Tarefa Principal):</strong> Conecte o Positivo da Bateria (+) à Chave 1. Após a Chave 1, divida o fio em dois caminhos paralelos:</li>
+<li>Caminho A: Conecte um resistor de 100Ω à perna longa (+) do LED 1. Conecte a perna curta (-) ao Negativo da Bateria (-).</li>
+<li>Caminho B: Conecte o fio positivo do Motor Vibratório. Conecte o fio negativo ao Negativo da Bateria (-).</li>
+<li><strong>Trilha 2:</strong> Conecte a Bateria (+) à Chave 2 → resistor de 100Ω → LED 2 (+) | LED 2 (-) ao Negativo da Bateria (-).</li>
+<li><strong>Trilha 3:</strong> Conecte a Bateria (+) à Chave 3 → resistor de 100Ω → LED 3 (+) | LED 3 (-) ao Negativo da Bateria (-).</li>
+</ul></section><section class="project-document" id="doc-materials"><div class="document-label">Lista de materiais</div><h3>Lista de materiais</h3>
+<p><strong>🌱 Level 1 (Basic)</strong></p>
+<ul>
+<li>LEDs (várias cores)</li>
+<li>220Ω resistors</li>
+<li>Chaves gangorra</li>
+<li>Porta-retrato (Porta-retrato)</li>
+<li>Suporte de pilhas e pilhas</li>
+<li>Fios jumper</li>
+</ul>
+<p><strong>⚡ Level 2 (Intermediate)</strong></p>
+<ul>
+<li>3x LEDs (várias cores)</li>
+<li>3x Resistores 100Ω</li>
+<li>3x Chaves tic-tac</li>
+<li>1x 3V Motor vibratório (Motor vibratório 3V)</li>
+<li>1x Suporte para 2 pilhas AA</li>
+<li>Porta-retrato (Porta-retrato)</li>
+<li>Fios jumper</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../#projetos">← Explorar outros projetos</a></footer>
+</body>
+</html>

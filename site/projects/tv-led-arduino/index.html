@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Televisão RGB com Arduino | Connect Byte</title>
+  <link rel="icon" href="../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../"><img class="official-logo" src="../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Televisão RGB com Arduino</h1><p>Um projeto de eletrônica criativa onde as participantes constroem uma mini televisão de papelão com iluminação RGB interativa controlada por um Arduino e um botão.</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="assets/tv-3.jpeg" alt="Foto do projeto Televisão RGB com Arduino"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-materials">Lista de materiais</a><a href="#doc-wiki">Conteúdo complementar</a><a href="firmware/src/main.cpp">Ver código do projeto</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Um projeto de eletrônica criativa onde as participantes constroem uma mini televisão de papelão com iluminação RGB interativa controlada por um Arduino e um botão.</p>
+<p>Este projeto foi desenvolvido durante um encontro mensal da Connect Byte e introduz conceitos fundamentais de eletrônica, mistura de cores e programação embarcada.</p>
+<hr>
+<h3>Visão geral</h3>
+<p>Neste projeto, as participantes constroem a carcaça de uma "TV" customizada e montam um circuito interativo.</p>
+<p>Utilizando um Arduino, um LED RGB e um botão (push-button), o sistema simula a troca de canais da TV. Cada vez que o botão é pressionado, o Arduino atualiza uma máquina de estados para mudar a cor da tela (Vermelho, Verde, Azul, Modo Festa ou Desligado).</p>
+<p>Este projeto apresenta conceitos fundamentais como:</p>
+<ul>
+<li>eletrônica básica (Tensão, Corrente e GND)</li>
+<li>a importância dos resistores para limitação de corrente</li>
+<li>como funcionam os LEDs RGB e a mistura de cores via PWM</li>
+<li>leitura de entradas digitais (botões) e debouncing</li>
+<li>máquinas de estado e lógica de <code>switch/case</code></li>
+</ul>
+<hr>
+<h3>Circuito</h3>
+<ul>
+<li><strong>LED RGB</strong> → Conecte cada perna de cor (R, G, B) a um resistor de 220Ω, e depois aos pinos PWM do Arduino (ex: 9, 10, 11). Conecte a perna comum ao GND ou 5V (dependendo do tipo do LED).</li>
+<li><strong>Botão (Push-button)</strong> → Um lado no GND, o outro no pino digital 2 do Arduino (usando o <code>INPUT_PULLUP</code> interno).</li>
+<li><strong>Alimentação</strong> → O sistema pode ser alimentado por um suporte de pilhas conectado aos pinos VIN e GND do Arduino.</li>
+</ul>
+<hr>
+<h3>Código</h3>
+<p>O código de exemplo está disponível na pasta <code>code</code>.</p>
+<p>O projeto pode ser aberto utilizando <strong>PlatformIO no Visual Studio Code</strong>.</p>
+<p>Arquivo principal: <code>firmware/src/main.cpp</code></p>
+<p>Para entender a fundo a leitura de botões, o truque do <code>millis()</code> (debouncing) e a programação dos "canais" da TV, assista à <a href="https://www.youtube.com/watch?v=jdX4qP33tmc" target="_blank" rel="noopener">gravação do nosso encontro</a> com o passo a passo do código.</p>
+<p>Veja mais também em nosso <a href="https://www.canva.com/design/DAHD3Qv_aYI/iuNidV_qm2hbHpIOjla_cA/edit?utm_content=DAHD3Qv_aYI&amp;amp;utm_campaign=designshare&amp;amp;utm_medium=link2&amp;amp;utm_source=sharebutton" target="_blank" rel="noopener">workshop</a>.</p>
+<hr>
+<div class="contact-card">
+<h2>Comunidade Connect Byte</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Site</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-materials"><div class="document-label">Lista de materiais</div><h3>Lista de materiais</h3>
+<ul>
+<li>Arduino Uno (ou compatível)</li>
+<li>RGB LED (LED RGB)</li>
+<li>Simple LED (optional, for basic testing)</li>
+<li>220Ω or 150Ω resistors</li>
+<li>Botão (Botão)</li>
+<li>Suporte de pilhas e pilhas</li>
+<li>Protoboard</li>
+<li>Fios jumper</li>
+<li>Cabo USB</li>
+</ul></section><section class="project-document" id="doc-wiki"><div class="document-label">Conteúdo complementar</div><hr>
+<h2>Wiki do Projeto: Televisão com Arduino</h2>
+<hr>
+<h3>01. Introdução</h3>
+<p>Esta Wiki foi desenvolvida como guia completo do Projeto de Março da Connect Byte, cujo objetivo é construir uma “televisão” utilizando LED simples ou LED RGB, botão e Arduino Uno.</p>
+<p>O conteúdo foi estruturado para conduzir o participante desde os conceitos fundamentais de eletrônica até a montagem e teste completo do circuito.</p>
+<p>Ao final, espera‑se que o aprendiz compreenda:</p>
+<ul>
+<li>O funcionamento básico de um circuito elétrico.</li>
+<li>A importância de resistores.</li>
+<li>O uso correto de LEDs simples e RGB.</li>
+<li>O funcionamento de botões com Arduino.</li>
+<li>Como alimentar a placa com bateria.</li>
+<li>Como carregar um programa no Arduino.</li>
+</ul>
+<p>Este material é recomendado para estudo individual, uso em oficinas e referência posterior.</p>
+<hr>
+<h3>02. Eletrônica Básica</h3>
+<h4>2.1 Tensão, Corrente e Referência GND</h4>
+<p>Todo circuito elétrico depende de três elementos essenciais:</p>
+<ul>
+<li><strong>Tensão (V):</strong> força que empurra os elétrons.</li>
+<li><strong>Corrente (A):</strong> fluxo de elétrons pelo circuito.</li>
+<li><strong>GND:</strong> ponto de referência (0 V), completando o caminho da corrente.</li>
+</ul>
+<p>No Arduino Uno:</p>
+<ul>
+<li>5V é a tensão padrão fornecida aos componentes.</li>
+<li>GND é o retorno obrigatório para fechar o circuito.</li>
+</ul>
+<h4>2.2 Resistores</h4>
+<blockquote><strong>TODO:</strong> adicionar a imagem de resistores mencionada na documentação original.</blockquote>
+<p>Resistores limitam a corrente que flui por um componente sensível, como LEDs.</p>
+<p>Exemplo simplificado:</p>
+<ul>
+<li>LED típico: 2 V, 20 mA</li>
+<li>Fonte: 5 V</li>
+</ul>
+<p>Cálculo aproximado: <strong>R = (5 V − 2 V) / 0,02 A = 150 Ω</strong></p>
+<p>Para iniciantes, recomenda-se:</p>
+<ul>
+<li>220 Ω</li>
+<li>330 Ω</li>
+</ul>
+<p>Esses valores garantem segurança e estabilidade no circuito.</p>
+<h4>2.3 Polaridade</h4>
+<p>Alguns componentes possuem orientação correta:</p>
+<ul>
+<li>LEDs possuem ânodo (+) e cátodo (−).</li>
+<li>Baterias possuem positivo e negativo.</li>
+<li>LEDs RGB possuem terminal comum e terminais individuais para cada cor.</li>
+</ul>
+<p>Conectar fora da polaridade pode impedir o funcionamento ou causar danos.</p>
+<hr>
+<h3>03. Componentes do Projeto</h3>
+<h4>3.1 LED Simples</h4>
+<blockquote><strong>TODO:</strong> adicionar a imagem de LEDs simples mencionada na documentação original.</blockquote>
+<ul>
+<li>Possui duas pernas.</li>
+<li>Emite luz de uma única cor.</li>
+<li>Necessita resistor obrigatoriamente.</li>
+</ul>
+<p>Identificação:</p>
+<ul>
+<li>Perna maior: ânodo (+)</li>
+<li>Perna menor: cátodo (−)</li>
+<li>Lado achatado na base: cátodo (−)</li>
+</ul>
+<h4>3.2 LED RGB</h4>
+<blockquote><strong>TODO:</strong> adicionar a imagem do LED RGB mencionada na documentação original.</blockquote>
+<ul>
+<li>Possui quatro pernas.</li>
+<li>Cada perna corresponde a uma cor: R, G e B.</li>
+<li>A perna restante é a comum: ânodo comum ou cátodo comum.</li>
+</ul>
+<p>Cada cor deve utilizar um resistor exclusivo.</p>
+<h4>3.3 Botão (Botão)</h4>
+<blockquote><strong>TODO:</strong> adicionar a imagem do botão mencionada na documentação original.</blockquote>
+<ul>
+<li>Utilizado para interação do usuário com o sistema.</li>
+<li>Funciona como um interruptor temporário.</li>
+<li>Requer normalmente resistor pull‑down ou pull‑up.</li>
+</ul>
+<h4>3.4 Suporte de Pilha e Bateria</h4>
+<blockquote><strong>TODO:</strong> adicionar a imagem do suporte de pilhas mencionada na documentação original.</blockquote>
+<ul>
+<li>Fio vermelho: positivo</li>
+<li>Fio preto: negativo</li>
+<li>No Arduino:</li>
+<li>VIN ou 5V → positivo</li>
+<li>GND → negativo</li>
+</ul>
+<h4>3.5 Arduino Uno</h4>
+<blockquote><strong>TODO:</strong> adicionar a imagem do Arduino Uno mencionada na documentação original.</blockquote>
+<ul>
+<li>Placa microcontrolada usada para controlar LEDs, botões e leituras.</li>
+<li>Alimentada por USB ou bateria.</li>
+<li>Possui pinos digitais, portas de alimentação e interface de programação.</li>
+</ul>
+<hr>
+<h3>04. Montagem do Circuito</h3>
+<h4>4.1 Teste do LED Simples com Bateria</h4>
+<ol>
+<li>Conectar a bateria ao LED utilizando um resistor de 220 Ω.</li>
+<li>Verificar polaridade.</li>
+<li>Confirmar que o LED acende levemente.</li>
+</ol>
+<h4>4.2 Montagem do LED Simples no Arduino</h4>
+<p>Pino digital → resistor → ânodo Cátodo → GND</p>
+<h4>4.3 Montagem do LED RGB</h4>
+<ul>
+<li>Conectar cada cor a um pino digital do Arduino.</li>
+<li>Usar resistores individuais para cada cor.</li>
+<li>Conectar perna comum ao 5V (ânodo comum) ou GND (cátodo comum), conforme o modelo.</li>
+</ul>
+<h4>4.4 Conexão do Botão</h4>
+<p>Configuração típica com pull‑down:</p>
+<ul>
+<li>Um lado do botão → 5V</li>
+<li>Outro lado → pino digital do Arduino</li>
+<li>Pino digital também conectado a um resistor para GND (10 kΩ geralmente)</li>
+</ul>
+<h4>4.5 Alimentação com Bateria</h4>
+<ul>
+<li>Conectar fio vermelho do suporte de pilhas ao VIN ou 5V.</li>
+<li>Conectar fio preto ao GND.</li>
+<li>Garantir que a polaridade esteja correta.</li>
+</ul>
+<hr>
+<h3>05. Programação do Arduino</h3>
+<h4>5.1 Ambiente de Desenvolvimento</h4>
+<ul>
+<li>Instalar Arduino IDE.</li>
+<li>Selecionar a placa "Arduino Uno".</li>
+<li>Selecionar a porta COM correta.</li>
+</ul>
+<h4>5.2 Upload do Código</h4>
+<ol>
+<li>Conectar o Arduino via cabo USB.</li>
+<li>Abrir o arquivo-fonte do projeto.</li>
+<li>Verificar a seleção da placa.</li>
+<li>Carregar o código utilizando o botão "Upload".</li>
+</ol>
+<h4>5.3 Boas Práticas no Código</h4>
+<ul>
+<li>Declarar pinos claramente.</li>
+<li>Incluir comentários explicativos.</li>
+<li>Testar individualmente LED simples, RGB e botão antes de integração final.</li>
+</ul>
+<hr>
+<h3>06. Testes</h3>
+<h4>6.1 Teste do LED Simples</h4>
+<ul>
+<li>Validar se acende quando programado.</li>
+<li>Verificar brilho consistente.</li>
+</ul>
+<h4>6.2 Teste do LED RGB</h4>
+<ul>
+<li>Testar separadamente vermelho, verde e azul.</li>
+<li>Confirmar funcionamento adequado da perna comum.</li>
+</ul>
+<h4>6.3 Teste do Botão</h4>
+<ul>
+<li>Confirmar leitura digital no monitor serial.</li>
+<li>Testar comportamento com pull-down ou pull-up.</li>
+</ul>
+<h4>6.4 Teste de Alimentação</h4>
+<ul>
+<li>Verificar estabilidade quando alimentado por bateria.</li>
+<li>Confirmar ausência de aquecimento dos componentes.</li>
+</ul>
+<hr>
+<h3>07. Solução de Problemas</h3>
+<h4>7.1 LED não acende</h4>
+<ul>
+<li>Verificar polaridade.</li>
+<li>Confirmar resistor.</li>
+<li>Checar se está no pino correto.</li>
+</ul>
+<h4>7.2 LED RGB com cor incorreta</h4>
+<ul>
+<li>Comum conectado de forma errada.</li>
+<li>Resistores ausentes ou incorretos.</li>
+<li>Código configurado para modelo oposto (ânodo/cátodo).</li>
+</ul>
+<h4>7.3 Botão não funciona</h4>
+<ul>
+<li>Falta de resistor pull-down.</li>
+<li>Fiação incorreta.</li>
+<li>Mau contato na protoboard.</li>
+</ul>
+<h4>7.4 Arduino reinicia</h4>
+<ul>
+<li>Curto-circuito.</li>
+<li>Sobrecarga nos pinos.</li>
+<li>Fonte insuficiente.</li>
+</ul>
+<hr>
+<h3>08. Boas Práticas</h3>
+<ul>
+<li>Testar individualmente cada componente.</li>
+<li>Evitar soldagem desnecessária se iniciante.</li>
+<li>Manter organização dos fios.</li>
+<li>Registrar alterações no código.</li>
+<li>Não energizar simultaneamente USB e bateria sem conhecer a topologia elétrica.</li>
+</ul>
+<hr>
+<h3>09. Considerações Finais</h3>
+<p>O Projeto de Março da Connect Byte foi desenvolvido para introduzir de forma prática e segura os conceitos essenciais de eletrônica e programação embarcada.</p>
+<p>Recomenda-se aos participantes:</p>
+<ul>
+<li>Repetir os experimentos.</li>
+<li>Testar variações de código.</li>
+<li>Explorar novas combinações de LEDs e botões.</li>
+<li>Estudar novos sensores e atuadores.</li>
+</ul>
+<p>Este projeto serve como base sólida para aprofundamento em circuitos mais complexos e sistemas embarcados.</p>
+<hr>
+<p>Feito com 💙 para quem quer/tem um hobby no mundo da tecnologia. Connect Byte • Março 2026</p></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../#projetos">← Explorar outros projetos</a></footer>
+</body>
+</html>
