@@ -72,6 +72,14 @@
     "url": "../projects/planner-led/en/"
   },
   {
+    "name": "Pomodoro Timer with ESP32-C3",
+    "slug": "pomodoro-esp32",
+    "summary": "A portable focus timer that combines an ESP32-C3 Super Mini, an OLED display, two buttons, and a buzzer to organize work and break cycles.",
+    "has_firmware": true,
+    "cover": "../projects/pomodoro-esp32/TODO",
+    "url": "../projects/pomodoro-esp32/en/"
+  },
+  {
     "name": "Easter Physical Tamagotchi",
     "slug": "tamagotchi-pascoa",
     "summary": "A creative electronics project where participants build an interactive Easter-themed object that blends crafting, storytelling, and hardware in a playful and hands-on way ✨",
