@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""Valida estrutura, metadados e links locais dos projetos sem dependências."""
+
+from __future__ import annotations
+
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+PROJECTS = ROOT / "projects"
+REQUIRED = (
+    "name",
+    "slug",
+    "status",
+    "date",
+    "has_firmware",
+    "cover",
+)
+SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+LINK_RE = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+HTML_LINK_RE = re.compile(r"(?:src|href)=[\"']([^\"']+)[\"']", re.IGNORECASE)
+FILE_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*(?:\.[a-z0-9]+)?$")
+
+
+def read_metadata(path: Path) -> dict[str, str]:
+    data: dict[str, str] = {}
+    for number, raw in enumerate(path.read_text(encoding="utf-8-sig").splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if ":" not in line:
+            raise ValueError(f"linha {number} inválida")
+        key, value = line.split(":", 1)
+        data[key.strip()] = value.strip().strip('"\'')
+    return data
+
+
+def local_target(source: Path, raw_target: str) -> Path | None:
+    target = raw_target.strip().split()[0].strip("<>")
+    if not target or target.startswith(("#", "http://", "https://", "mailto:")):
+        return None
+    target = target.split("#", 1)[0].split("?", 1)[0]
+    if not target:
+        return None
+    return (ROOT / target.lstrip("/")) if target.startswith("/") else (source.parent / target)
+
+
+def validate_links(markdown: Path, errors: list[str]) -> None:
+    try:
+        text = markdown.read_text(encoding="utf-8-sig")
+    except UnicodeError as exc:
+        errors.append(f"{markdown.relative_to(ROOT)}: não foi possível ler: {exc}")
+        return
+    for raw_target in LINK_RE.findall(text) + HTML_LINK_RE.findall(text):
+        target = local_target(markdown, raw_target)
+        if target is not None and not target.exists():
+            errors.append(f"{markdown.relative_to(ROOT)}: link local não encontrado: {raw_target}")
+
+
+def main() -> int:
+    errors: list[str] = []
+    warnings: list[str] = []
+    if not PROJECTS.is_dir():
+        errors.append("pasta projects/ não encontrada")
+    else:
+        for project in sorted(path for path in PROJECTS.iterdir() if path.is_dir()):
+            if not SLUG_RE.fullmatch(project.name):
+                errors.append(f"{project.relative_to(ROOT)}: nome não está em kebab-case")
+            for required_file in ("README.md", "README.en.md", "project.yml"):
+                if not (project / required_file).is_file():
+                    errors.append(f"{project.relative_to(ROOT)}: falta {required_file}")
+            metadata_path = project / "project.yml"
+            if metadata_path.is_file():
+                try:
+                    metadata = read_metadata(metadata_path)
+                except (OSError, UnicodeError, ValueError) as exc:
+                    errors.append(f"{metadata_path.relative_to(ROOT)}: {exc}")
+                    metadata = {}
+                for field in REQUIRED:
+                    if field not in metadata or not metadata[field]:
+                        errors.append(f"{metadata_path.relative_to(ROOT)}: falta o campo {field}")
+                if metadata.get("slug") != project.name:
+                    errors.append(f"{metadata_path.relative_to(ROOT)}: slug não corresponde à pasta")
+                if metadata.get("status") not in {"draft", "published"}:
+                    errors.append(
+                        f"{metadata_path.relative_to(ROOT)}: status deve ser draft ou published"
+                    )
+                firmware = project / "firmware"
+                value = metadata.get("has_firmware")
+                if value not in {"true", "false"}:
+                    errors.append(f"{metadata_path.relative_to(ROOT)}: has_firmware deve ser true ou false")
+                elif value == "true" and (not firmware.is_dir() or not any(firmware.rglob("*"))):
+                    errors.append(f"{project.relative_to(ROOT)}: firmware declarado, mas ausente")
+                elif value == "true":
+                    for firmware_file in ("platformio.ini", "src/main.cpp"):
+                        if not (firmware / firmware_file).is_file():
+                            errors.append(
+                                f"{project.relative_to(ROOT)}: firmware sem {firmware_file}"
+                            )
+                elif value == "false" and firmware.exists():
+                    errors.append(f"{project.relative_to(ROOT)}: firmware existe, mas has_firmware é false")
+                cover = metadata.get("cover", "TODO")
+                if cover != "TODO" and not (project / cover).is_file():
+                    errors.append(f"{metadata_path.relative_to(ROOT)}: cover não encontrado: {cover}")
+                for field in ("date", "cover"):
+                    if metadata.get(field) == "TODO":
+                        warnings.append(f"{metadata_path.relative_to(ROOT)}: {field} ainda é TODO")
+
+            for folder_name in ("assets", "docs", "hardware"):
+                folder = project / folder_name
+                if folder.is_dir():
+                    for item in folder.rglob("*"):
+                        if not FILE_RE.fullmatch(item.name):
+                            errors.append(
+                                f"{item.relative_to(ROOT)}: nome não está em lowercase kebab-case"
+                            )
+
+            for markdown in project.rglob("*.md"):
+                validate_links(markdown, errors)
+
+    for markdown in (
+        ROOT / "README.md",
+        ROOT / ".github" / "maintenance" / "project-standard.md",
+        ROOT / ".github" / "maintenance" / "how-to-add-project.md",
+        ROOT / "docs" / "platformio.md",
+        ROOT / "docs" / "platformio.en.md",
+    ):
+        if markdown.is_file():
+            validate_links(markdown, errors)
+
+    for item in errors:
+        print(f"ERRO: {item}")
+    for item in warnings:
+        print(f"AVISO: {item}")
+    count = len(list(PROJECTS.iterdir())) if PROJECTS.is_dir() else 0
+    print(f"Validação concluída: {count} projeto(s), {len(errors)} erro(s), {len(warnings)} aviso(s).")
+    return 1 if errors else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Pomodoro Timer with ESP32-C3 | Connect Byte</title>
+  <link rel="icon" href="../../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../../en/"><img class="official-logo" src="../../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Language"><a href="../">PT</a><strong>EN</strong></span><a class="back-link" href="../../../en/#projects">← All projects</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../../en/#projects">Projects /</a><span class="project-type">Firmware available</span><h1>Pomodoro Timer with ESP32-C3</h1><p>A portable focus timer that combines an ESP32-C3 Super Mini, an OLED display, two buttons, and a buzzer to organize work and break cycles.</p><div class="hero-actions"><a class="button primary" href="#content">Start this project</a><a class="button secondary" href="../firmware/src/main.cpp">View project code</a></div></div><img src="../assets/tomate.jpeg" alt="Project photo Pomodoro Timer with ESP32-C3"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>In this project</strong><a href="#overview">Overview</a><a href="#doc-assembly">Assembly guide</a><a href="#doc-materials">Materials</a><a href="../firmware/src/main.cpp">View project code</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">About the project</div><p>A portable focus timer that combines an ESP32-C3 Super Mini, an OLED display, two buttons, and a buzzer to organize work and break cycles.</p>
+<p>The project was developed for Connect Byte's November workshop and introduces state-based programming, button input, non-blocking timing, and visual and audible feedback.</p>
+<h3>How it works</h3>
+<ul>
+<li>The display shows the remaining time, current cycle, and a progress bar.</li>
+<li>B2 starts, pauses, and resumes the timer.</li>
+<li>B1 resets the cycle.</li>
+<li>While idle, hold B1 for 1 second to adjust work and break durations.</li>
+<li>While idle, hold B2 for 2 seconds to enable or disable sound.</li>
+<li>At the end of each stage, choose whether to start another focus session or a break.</li>
+</ul>
+<h3>Materials and assembly</h3>
+<ul>
+<li><a href="#doc-materials">Bill of materials</a></li>
+<li><a href="#doc-assembly">Assembly and usage guide</a></li>
+</ul>
+<h3>Firmware</h3>
+<p>The firmware uses the Arduino Framework with PlatformIO and is available in <a href="../firmware"><code>firmware/</code></a>. It targets the ESP32-C3 Super Mini and a 128 x 32 SSD1306 OLED display at I2C address <code>0x3C</code>.</p>
+<p>Open the <code>firmware/</code> folder in VS Code with PlatformIO to build it. See the repository's <a href="#doc-platformio.en">PlatformIO guide</a> for setup instructions.</p>
+<div class="contact-card">
+<h2>Connect Byte community</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Website</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-assembly"><div class="document-label">Assembly guide</div><h2>🔌 Assembly Guide</h2>
+<h3>Before you begin</h3>
+<p>Keep power disconnected while wiring. Verify the battery's positive and negative terminals before connecting it, and confirm every connection against the pin table below.</p>
+<h3>Signal wiring</h3>
+<div class="table-wrap"><table><thead><tr><th>Component</th><th>Connection</th></tr></thead><tbody>
+<tr><td>OLED SDA</td><td>GPIO 4</td></tr>
+<tr><td>OLED SCL</td><td>GPIO 5</td></tr>
+<tr><td>OLED VCC</td><td>Compatible supply</td></tr>
+<tr><td>OLED GND</td><td>GND</td></tr>
+<tr><td>Button B1</td><td>GPIO 0 and GND</td></tr>
+<tr><td>Button B2</td><td>GPIO 1 and GND</td></tr>
+<tr><td>Buzzer positive</td><td>GPIO 7</td></tr>
+<tr><td>Buzzer negative</td><td>GND</td></tr>
+</tbody></table></div>
+<p>The buttons use <code>INPUT_PULLUP</code>, so they are active-low and do not need external pull-up resistors.</p>
+<h3>Power</h3>
+<p>Wire the battery, protected charger, and power switch as shown in the diagram while following the specifications of the components in your kit. Do not program or power the board until continuity, voltage, and polarity have been checked.</p>
+<h3>Programming</h3>
+<ol>
+<li>Install VS Code and PlatformIO using the <a href="#doc-platformio.en">English guide</a>.</li>
+<li>Open the <code>firmware/</code> folder as a PlatformIO project.</li>
+<li>Connect the ESP32-C3 with a USB data cable.</li>
+<li>Build and upload the firmware.</li>
+<li>Open the serial monitor at <code>115200</code> to follow startup.</li>
+</ol>
+<h3>Controls</h3>
+<div class="table-wrap"><table><thead><tr><th>State</th><th>B1</th><th>B2</th></tr></thead><tbody>
+<tr><td>Idle</td><td>Reset; hold 1 s for settings</td><td>Start; hold 2 s for sound</td></tr>
+<tr><td>Running</td><td>Reset</td><td>Pause</td></tr>
+<tr><td>Paused</td><td>Reset</td><td>Resume</td></tr>
+<tr><td>Settings</td><td>Confirm</td><td>Next option</td></tr>
+</tbody></table></div></section><section class="project-document" id="doc-materials"><div class="document-label">Materials</div><h3>🛠️ Bill of Materials</h3>
+<ul>
+<li>1 ESP32-C3 Super Mini board</li>
+<li>1 128 x 32 SSD1306 I2C OLED display</li>
+<li>2 momentary push buttons</li>
+<li>1 passive buzzer</li>
+<li>1 rechargeable battery compatible with the circuit</li>
+<li>1 protected USB-C charger module compatible with the battery</li>
+<li>1 on/off switch</li>
+<li>Hookup wire</li>
+<li>1 USB data cable for programming</li>
+</ul>
+<blockquote>Verify battery and charger model, voltage, and polarity before assembly. Never connect a battery with reversed polarity.</blockquote></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../../en/#projects">← Explore other projects</a></footer>
+</body>
+</html>

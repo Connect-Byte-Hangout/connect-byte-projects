@@ -55,6 +55,7 @@ Projects with firmware use PlatformIO. See the [Portuguese installation and usag
 | [Melodia Mecânica](projects/mechanical-melody/README.md) | Não |
 | [Planner Financeiro Físico](projects/physical-financial-planner/README.md) | Sim |
 | [Planner Interativo com LEDs](projects/planner-led/README.md) | Não |
+| [Pomodoro com ESP32-C3](projects/pomodoro-esp32/README.md) | Sim |
 | [Tamagotchi Físico de Páscoa](projects/tamagotchi-pascoa/README.md) | Sim |
 | [Televisão RGB com Arduino](projects/tv-led-arduino/README.md) | Sim |
 <!-- PROJECTS:END -->

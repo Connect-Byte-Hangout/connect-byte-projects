@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#6f4acb">
+  <title>Interactive LED Planner | Connect Byte</title>
+  <link rel="icon" href="../../../banner.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body class="project-page">
+  <header class="site-header project-header">
+    <a class="brand" href="../../../en/"><img class="official-logo" src="../../../assets/connect-byte-logo-horizontal.png" alt="Connect Byte"></a>
+    <div class="header-actions"><span class="language-switch" aria-label="Language"><a href="../">PT</a><strong>EN</strong></span><a class="back-link" href="../../../en/#projects">← All projects</a></div>
+  </header>
+  <main>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../../en/#projects">Projects /</a><span class="project-type">No firmware available</span><h1>Interactive LED Planner</h1><p>A hands-on electronics project where participants build an interactive habit tracker or daily planner inside a picture frame.</p><div class="hero-actions"><a class="button primary" href="#content">Start this project</a></div></div><img src="../assets/planner-1.jpg" alt="Project photo Interactive LED Planner"></section>
+    <div class="project-layout" id="content">
+      <aside class="project-nav"><strong>In this project</strong><a href="#overview">Overview</a><a href="#doc-assembly">Assembly guide</a><a href="#doc-materials">Materials</a></aside>
+      <article class="project-content"><section class="project-document" id="overview"><div class="document-label">About the project</div><p>A hands-on electronics project where participants build an interactive habit tracker or daily planner inside a picture frame.</p>
+<p>This project was developed during a Connect Byte workshop and introduces physical interaction and basic circuit logic in a creative way.</p>
+<hr>
+<h3>🎨 Project Overview</h3>
+<p>In this project, participants use a picture frame to create a visual "quest board" or habit tracker. Each task is linked to a physical switch and an output (like an LED or a vibration motor).</p>
+<p>When a task is completed, flipping the switch activates the circuit, giving a satisfying visual and physical feedback of accomplishment.</p>
+<p>This project is designed to be modular, allowing participants to choose their level of complexity:</p>
+<p><strong>🌱 Level 1: Basic:</strong> A simple circuit using rocker switches and LEDs. Completing a task turns on its corresponding light.</p>
+<p><strong>⚡ Level 2: Intermediate:</strong> An upgraded circuit featuring multiple switches, LEDs, and a vibration motor. One of the "main tasks" triggers both a light and a satisfying haptic vibration when completed.</p>
+<hr>
+<h3>🧩 How We'll Integrate Art and Electronics</h3>
+<p>To ensure a seamless integration between the handcrafted planner and the hardware, this project introduces key concepts such as:</p>
+<ol>
+<li><em>Basic Electronics:</em> Understanding Voltage, Current, GND, and circuit loops.</li>
+<li><em>Component Controls:</em> Learning how switches act as gates for current and how resistors protect components.</li>
+<li><em>Parallel Circuits:</em> Wiring multiple independent paths so that different switches control separate tasks, or a single switch triggers two components at once (LED + Motor).</li>
+</ol>
+<hr>
+<h3>🛠️ Technical Summary for Assembly (Hardware)</h3>
+<p>The circuits are standalone hardware projects powered by batteries, requiring no microcontrollers or programming.</p>
+<ul>
+<li><strong>Step-by-step:</strong> Check the <a href="#doc-assembly">assembly guide</a>. To view the circuit, check the diagrams for the <a href="../hardware/diagram-basic.png">Basic Project</a> and <a href="../hardware/diagram-medium.png">Intermediate Project</a>.</li>
+</ul>
+<ul>
+<li><strong>Workshop:</strong> Coming soon in our online class "Debug sem Pressão".</li>
+</ul>
+<hr>
+<div class="contact-card">
+<h2>Connect Byte community</h2>
+<div class="contact-links">
+<a href="https://connect-byte.org" target="_blank" rel="noopener">Website</a>
+<a href="https://www.linkedin.com/company/connect-byte/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.instagram.com/connectbyte_" target="_blank" rel="noopener">Instagram</a>
+</div>
+</div></section><section class="project-document" id="doc-assembly"><div class="document-label">Assembly guide</div><h2>🛠️ Assembly Guide</h2>
+<p>This guide provides step-by-step instructions for assembling both levels of the Interactive LED Planner. / Este guia fornece instruções passo a passo para a montagem de ambos os níveis do Planner Interativo.</p>
+<hr>
+<h3>🌱 Level 1: Basic Circuit</h3>
+<ol>
+<li><strong>Prepare the LED:</strong> Identify the longer leg (Anode, +) and shorter leg (Cathode, -) of your LED.</li>
+<li><strong>Connect the Switch:</strong> Connect the positive terminal (+) of your battery holder to one of the pins on the rocker switch.</li>
+<li><strong>Add Protection:</strong> From the other pin of the switch, connect a 220Ω resistor to the longer leg (+) of the LED.</li>
+<li><strong>Close the Loop:</strong> Connect the shorter leg (-) of the LED back to the negative terminal (-) of the battery holder.</li>
+<li>Repeat this flow for each individual task/light on your frame!</li>
+</ol>
+<h3>⚡ Level 2: Intermediate Circuit</h3>
+<p>This circuit shares a single 2x AA battery power source (3V) distributed across 3 parallel tracks.</p>
+<ul>
+<li><strong>Track 1 (Main Task):</strong> Connect Battery (+) to Switch 1. After Switch 1, split the wire into two parallel paths:</li>
+<li>Path A: Connect a 100Ω resistor to the long leg (+) of LED 1. Connect the short leg (-) to Battery (-).</li>
+<li>Path B: Connect the positive wire of the Vibration Motor. Connect the negative wire to Battery (-).</li>
+<li><strong>Track 2:</strong> Connect Battery (+) to Switch 2 → 100Ω resistor → LED 2 (+) | LED 2 (-) to Battery (-).</li>
+<li><strong>Track 3:</strong> Connect Battery (+) to Switch 3 → 100Ω resistor → LED 3 (+) | LED 3 (-) to Battery (-).</li>
+</ul></section><section class="project-document" id="doc-materials"><div class="document-label">Materials</div><h3>Materials</h3>
+<p><strong>🌱 Level 1 (Basic)</strong></p>
+<ul>
+<li>LEDs (various colors)</li>
+<li>220Ω resistors</li>
+<li>Rocker switches</li>
+<li>Picture frame (Porta-retrato)</li>
+<li>Battery holder &amp; batteries</li>
+<li>Jumper wires</li>
+</ul>
+<p><strong>⚡ Level 2 (Intermediate)</strong></p>
+<ul>
+<li>3x LEDs (various colors)</li>
+<li>3x 100Ω resistors</li>
+<li>3x Toggle switches</li>
+<li>1x 3V Vibration motor (Motor vibratório 3V)</li>
+<li>1x 2x AA Battery holder</li>
+<li>Picture frame (Porta-retrato)</li>
+<li>Jumper wires</li>
+</ul></section></article>
+    </div>
+  </main>
+  <footer class="project-footer"><a href="../../../en/#projects">← Explore other projects</a></footer>
+</body>
+</html>
