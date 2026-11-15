@@ -14,7 +14,7 @@
     <div class="header-actions"><span class="language-switch" aria-label="Language"><a href="../">PT</a><strong>EN</strong></span><a class="back-link" href="../../../en/#projects">← All projects</a></div>
   </header>
   <main>
-    <section class="project-hero"><div><a class="breadcrumb" href="../../../en/#projects">Projects /</a><span class="project-type">Firmware available</span><h1>Pomodoro Timer with ESP32-C3</h1><p>A portable focus timer that combines an ESP32-C3 Super Mini, an OLED display, two buttons, and a buzzer to organize work and break cycles.</p><div class="hero-actions"><a class="button primary" href="#content">Start this project</a><a class="button secondary" href="../firmware/src/main.cpp">View project code</a></div></div><img src="../TODO" alt="Project photo Pomodoro Timer with ESP32-C3"></section>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../../en/#projects">Projects /</a><span class="project-type">Firmware available</span><h1>Pomodoro Timer with ESP32-C3</h1><p>A portable focus timer that combines an ESP32-C3 Super Mini, an OLED display, two buttons, and a buzzer to organize work and break cycles.</p><div class="hero-actions"><a class="button primary" href="#content">Start this project</a><a class="button secondary" href="../firmware/src/main.cpp">View project code</a></div></div><img src="../assets/tomate.jpeg" alt="Project photo Pomodoro Timer with ESP32-C3"></section>
     <div class="project-layout" id="content">
       <aside class="project-nav"><strong>In this project</strong><a href="#overview">Overview</a><a href="#doc-assembly">Assembly guide</a><a href="#doc-materials">Materials</a><a href="../firmware/src/main.cpp">View project code</a></aside>
       <article class="project-content"><section class="project-document" id="overview"><div class="document-label">About the project</div><p>A portable focus timer that combines an ESP32-C3 Super Mini, an OLED display, two buttons, and a buzzer to organize work and break cycles.</p>
@@ -32,7 +32,6 @@
 <ul>
 <li><a href="#doc-materials">Bill of materials</a></li>
 <li><a href="#doc-assembly">Assembly and usage guide</a></li>
-<li><a href="../hardware/circuito-pomodoro.png">Circuit diagram</a></li>
 </ul>
 <h3>Firmware</h3>
 <p>The firmware uses the Arduino Framework with PlatformIO and is available in <a href="../firmware"><code>firmware/</code></a>. It targets the ESP32-C3 Super Mini and a 128 x 32 SSD1306 OLED display at I2C address <code>0x3C</code>.</p>
@@ -46,7 +45,7 @@
 </div>
 </div></section><section class="project-document" id="doc-assembly"><div class="document-label">Assembly guide</div><h2>🔌 Assembly Guide</h2>
 <h3>Before you begin</h3>
-<p>Review the <a href="../hardware/circuito-pomodoro.png">circuit diagram</a> and keep power disconnected while wiring. The polarity note in the diagram is a warning: verify the battery's positive and negative terminals before connecting it.</p>
+<p>Keep power disconnected while wiring. Verify the battery's positive and negative terminals before connecting it, and confirm every connection against the pin table below.</p>
 <h3>Signal wiring</h3>
 <div class="table-wrap"><table><thead><tr><th>Component</th><th>Connection</th></tr></thead><tbody>
 <tr><td>OLED SDA</td><td>GPIO 4</td></tr>

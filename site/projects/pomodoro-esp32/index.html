@@ -14,11 +14,10 @@
     <div class="header-actions"><span class="language-switch" aria-label="Idioma"><strong>PT</strong><a href="en/">EN</a></span><a class="back-link" href="../../#projetos">← Todos os projetos</a></div>
   </header>
   <main>
-    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Pomodoro com ESP32-C3</h1><p>Um temporizador de foco portátil que combina um ESP32-C3 Super Mini, display OLED, dois botões e um buzzer para organizar ciclos de trabalho e descanso.</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="TODO" alt="Foto do projeto Pomodoro com ESP32-C3"></section>
+    <section class="project-hero"><div><a class="breadcrumb" href="../../#projetos">Projetos /</a><span class="project-type">Firmware disponível</span><h1>Pomodoro com ESP32-C3</h1><p>Um temporizador de foco portátil que combina um ESP32-C3 Super Mini, display OLED, dois botões e um buzzer para organizar ciclos de trabalho e descanso.</p><div class="hero-actions"><a class="button primary" href="#content">Começar o projeto</a><a class="button secondary" href="firmware/src/main.cpp">Ver código do projeto</a></div></div><img src="assets/tomate.jpeg" alt="Foto do projeto Pomodoro com ESP32-C3"></section>
     <div class="project-layout" id="content">
       <aside class="project-nav"><strong>Neste projeto</strong><a href="#overview">Visão geral</a><a href="#doc-assembly">Guia de montagem</a><a href="#doc-materials">Lista de materiais</a><a href="firmware/src/main.cpp">Ver código do projeto</a></aside>
       <article class="project-content"><section class="project-document" id="overview"><div class="document-label">Sobre o projeto</div><p>Um temporizador de foco portátil que combina um ESP32-C3 Super Mini, display OLED, dois botões e um buzzer para organizar ciclos de trabalho e descanso.</p>
-<p>O projeto foi desenvolvido para o encontro de novembro da <strong>Connect Byte</strong> e apresenta programação orientada a estados, leitura de botões, temporização sem bloqueio e feedback visual e sonoro.</p>
 <h3>Como funciona</h3>
 <ul>
 <li>O display mostra o tempo restante, o ciclo atual e uma barra de progresso.</li>
@@ -32,7 +31,6 @@
 <ul>
 <li><a href="#doc-materials">Lista de materiais</a></li>
 <li><a href="#doc-assembly">Guia de montagem e uso</a></li>
-<li><a href="hardware/circuito-pomodoro.png">Diagrama do circuito</a></li>
 </ul>
 <h3>Firmware</h3>
 <p>O firmware usa o Arduino Framework com PlatformIO e está em <a href="firmware"><code>firmware/</code></a>. Ele foi configurado para o ESP32-C3 Super Mini e um display OLED SSD1306 de 128 x 32 pixels no endereço I2C <code>0x3C</code>.</p>
@@ -46,7 +44,7 @@
 </div>
 </div></section><section class="project-document" id="doc-assembly"><div class="document-label">Guia de montagem</div><h2>🔌 Guia de Montagem</h2>
 <h3>Antes de começar</h3>
-<p>Confira o <a href="hardware/circuito-pomodoro.png">diagrama do circuito</a> e mantenha a alimentação desligada durante as conexões. A mensagem sobre polaridade no diagrama é um alerta: confirme os terminais positivo e negativo da bateria antes de ligá-la.</p>
+<p>Mantenha a alimentação desligada durante as conexões. Confirme os terminais positivo e negativo da bateria antes de ligá-la e confira cada conexão na tabela de pinos abaixo.</p>
 <h3>Ligações de sinal</h3>
 <div class="table-wrap"><table><thead><tr><th>Componente</th><th>Ligação</th></tr></thead><tbody>
 <tr><td>OLED SDA</td><td>GPIO 4</td></tr>

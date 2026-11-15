@@ -17,7 +17,6 @@ The project was developed for Connect Byte's November workshop and introduces st
 
 - [Bill of materials](docs/materials.md)
 - [Assembly and usage guide](docs/assembly.md)
-- [Circuit diagram](hardware/circuito-pomodoro.png)
 
 ## Firmware
 

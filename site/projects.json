@@ -76,7 +76,7 @@
     "slug": "pomodoro-esp32",
     "summary": "Um temporizador de foco portátil que combina um ESP32-C3 Super Mini, display OLED, dois botões e um buzzer para organizar ciclos de trabalho e descanso.",
     "has_firmware": true,
-    "cover": "projects/pomodoro-esp32/TODO",
+    "cover": "projects/pomodoro-esp32/assets/tomate.jpeg",
     "url": "projects/pomodoro-esp32/"
   },
   {

@@ -2,7 +2,7 @@
 
 ## Before you begin
 
-Review the [circuit diagram](../hardware/circuito-pomodoro.png) and keep power disconnected while wiring. The polarity note in the diagram is a warning: verify the battery's positive and negative terminals before connecting it.
+Keep power disconnected while wiring. Verify the battery's positive and negative terminals before connecting it, and confirm every connection against the pin table below.
 
 ## Signal wiring
 
@@ -44,7 +44,7 @@ Wire the battery, protected charger, and power switch as shown in the diagram wh
 
 ## Antes de começar
 
-Confira o [diagrama do circuito](../hardware/circuito-pomodoro.png) e mantenha a alimentação desligada durante as conexões. A mensagem sobre polaridade no diagrama é um alerta: confirme os terminais positivo e negativo da bateria antes de ligá-la.
+Mantenha a alimentação desligada durante as conexões. Confirme os terminais positivo e negativo da bateria antes de ligá-la e confira cada conexão na tabela de pinos abaixo.
 
 ## Ligações de sinal
 

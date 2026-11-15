@@ -4,8 +4,6 @@
 
 Um temporizador de foco portátil que combina um ESP32-C3 Super Mini, display OLED, dois botões e um buzzer para organizar ciclos de trabalho e descanso.
 
-O projeto foi desenvolvido para o encontro de novembro da **Connect Byte** e apresenta programação orientada a estados, leitura de botões, temporização sem bloqueio e feedback visual e sonoro.
-
 ## Como funciona
 
 - O display mostra o tempo restante, o ciclo atual e uma barra de progresso.
@@ -19,7 +17,6 @@ O projeto foi desenvolvido para o encontro de novembro da **Connect Byte** e apr
 
 - [Lista de materiais](docs/materials.md)
 - [Guia de montagem e uso](docs/assembly.md)
-- [Diagrama do circuito](hardware/circuito-pomodoro.png)
 
 ## Firmware
 
